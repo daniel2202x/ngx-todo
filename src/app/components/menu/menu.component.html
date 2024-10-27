@@ -1,0 +1,26 @@
+<div class="d-flex h-100">
+    <div [@menuAnimLeft]="menuAnimState()" (@menuAnimLeft.done)="animationDone()"
+        class="menu-left position-relative h-100 py-2 bg-opacity-50 bg-secondary d-flex flex-column justify-content-between">
+        <div class="d-flex flex-column align-items-center gap-3 pt-5">
+            <span class="display-1 bg-dark rounded-circle w-50 ratio ratio-1x1">
+                <span class="text-light d-flex justify-content-center align-items-center">
+                    <i class="bi bi-person"></i>
+                </span>
+            </span>
+            <h3 i18n>Hello, {{displayName$ | async}}!</h3>
+            <div>
+                <button (click)="refresh()" data-cy="refresh-list" app-icon="bootstrap-reboot" app-icon-colour="primary"
+                    app-icon-size="lg"></button>
+                <button class="ms-2" (click)="createTodo()" data-cy="add-todo" app-icon="plus" app-icon-colour="success"
+                    app-icon-size="lg"></button>
+            </div>
+        </div>
+        <div class="d-flex flex-column align-items-center gap-3">
+            <button class="btn btn-link shadow-none" (click)="logout()" i18n>Logout</button>
+            <app-langauage-picker></app-langauage-picker>
+            <small class="text-muted">Build {{build}}</small>
+        </div>
+    </div>
+    <div [@menuAnimRight]="menuAnimState()" class="menu-right h-100" (click)="close()" (keypress)="close()" tabindex="0"
+        data-cy="menu-close"></div>
+</div>

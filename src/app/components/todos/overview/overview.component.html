@@ -1,0 +1,48 @@
+@if (isOnOverviewPage() || (isLargeScreen$ | async)) {
+<div class="container-fluid p-0 h-100">
+    <div class="row m-0 h-100">
+        <div class="col-12 col-md-6 p-0 h-100">
+            <div class="d-flex flex-column h-100">
+                <div class="p-3 pt-1">
+                    <input class="form-control" type="search" i18n-placeholder placeholder="Search everywhere..."
+                        [(ngModel)]="searchString">
+                </div>
+                <div class="px-3 h-100 overflow-y-auto overflow-x-hidden" cdkDropList
+                    [cdkDropListData]="todosReversed()" (cdkDropListDropped)="drop($event)" data-cy="drop-container">
+                    @for (todo of todosReversed(); track todo.id; let idx = $index) {
+                    @defer {
+                    <app-todo-summary cdkDrag [cdkDragData]="todo" [todo]="todo" (deleted)="deleteTodo($event)"
+                        class="d-block overflow-hidden position-relative" [@todoDeleteSlideOut]
+                        [class.d-none]="!todosToDisplay()?.includes(todo)">
+                        <div class="align-self-stretch d-flex align-items-center gap-2 p-1" cdkDragHandle
+                            [cdkDragHandleDisabled]="!!searchString()" [attr.data-cy]="'drag-handle-' + idx"
+                            [class.cursor-move]="!searchString()">
+                            @if (!searchString()) {
+                            <span *appSpinner="todoMoving() === todo.id" data-cy="save-drag-spinner"></span>
+                            <i class="bi bi-grip-vertical"></i>
+                            }
+                        </div>
+                    </app-todo-summary>
+                    }
+                    } @empty {
+                    <div class="fst-italic text-center">
+                        @if (initiallyLoading()){
+                        <ng-container i18n>Loading...</ng-container>
+                        } @else {
+                        <ng-container i18n>Nothing to do, all done!</ng-container>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (isLargeScreen$ | async) {
+        <div class="col-md-6 p-0">
+            <router-outlet></router-outlet>
+        </div>
+        }
+    </div>
+</div>
+} @else {
+<router-outlet></router-outlet>
+}

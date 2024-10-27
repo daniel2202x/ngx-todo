@@ -1,0 +1,16 @@
+<div class="card cursor-pointer mb-3" [routerLink]="todo().id" [class.pe-none]="isDeleting()">
+    <div class="card-body">
+        <ng-content></ng-content>
+        <h6 class="card-title m-0 fw-bold" data-cy="todo-title">{{todo().title}}</h6>
+        <span class="card-text d-inline-flex align-items-center" data-cy="todo-content">
+            {{todo().content | multiLineAbbreviation}}
+        </span>
+        <button app-icon="pen" app-icon-colour="primary" app-icon-size="sm" class="justify-self-end"></button>
+        <span>
+            <span *appSpinner="isDeleting()" class="me-1"></span>
+            <button data-cy="delete-todo" (click)="deleteTodo($event)" [disabled]="isDeleting()" app-icon="trash"
+                app-icon-colour="danger" app-icon-size="sm">
+            </button>
+        </span>
+    </div>
+</div>

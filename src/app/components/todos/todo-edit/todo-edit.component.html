@@ -1,0 +1,26 @@
+<div class="d-flex flex-column h-100 p-3 pt-0 gap-1">
+    <div class="d-flex justify-content-between justify-content-md-end align-items-center mb-2">
+        <a class="d-md-none" routerLink=".." data-cy="back" app-icon="arrow-left" app-icon-colour="link">
+            <span class="ms-1" i18n>Back</span>
+        </a>
+
+        @switch (saveStatus()) {
+        @case ('saved') {
+        <span class="badge text-bg-secondary" i18n>Saved</span>
+        }
+        @case ('unsaved') {
+        <span class="badge text-bg-warning" i18n>Unsaved</span>
+        }
+        @case ('saving') {
+        <span class="badge text-bg-info" i18n>Saving...</span>
+        }
+        }
+    </div>
+
+    <form [formGroup]="todoForm" class="flex-grow-1 d-flex flex-column">
+        <input data-cy="todo-title-input" formControlName="title" class="form-control mb-3 fw-bold" i18n-placeholder
+            placeholder="Title...">
+        <textarea data-cy="todo-content-input" formControlName="content" class="flex-grow-1 form-control resize-none"
+            i18n-placeholder placeholder="Content..."></textarea>
+    </form>
+</div>

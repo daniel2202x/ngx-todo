@@ -1,0 +1,21 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms;
+}
+
+.cdk-drop-list-dragging app-todo-summary:not(.cdk-drag-placeholder) {
+    transition: transform 250ms;
+}
+
+.cdk-drag-handle {
+    grid-row-end: span 2;
+}

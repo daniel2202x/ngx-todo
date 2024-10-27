@@ -1,0 +1,65 @@
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="signupForm" class="d-flex flex-column gap-3 align-items-center p-2">
+                        <h5 class="card-title fw-bold m-0" i18n>Sign Up</h5>
+
+                        <div class="text-center align-self-stretch">
+                            <label for="displayName" class="form-label" i18n>Your Name</label>
+                            <input formControlName="displayName" type="text" class="form-control text-center"
+                                id="displayName" appBootstrapValidation data-cy="display-name">
+                        </div>
+
+                        <div class="text-center align-self-stretch">
+                            <label for="email" class="form-label" i18n>Email</label>
+                            <input formControlName="email" type="email" class="form-control text-center" id="email"
+                                appBootstrapValidation data-cy="email">
+                        </div>
+
+                        <div class="text-center align-self-stretch">
+                            <label for="password" class="form-label" i18n>Password</label>
+                            <input formControlName="password" type="password" class="form-control text-center"
+                                id="password" appBootstrapValidation data-cy="password">
+                        </div>
+
+                        <div class="text-center align-self-stretch">
+                            <label for="passwordRepeated" class="form-label" i18n>Repeat Password</label>
+                            <input formControlName="passwordRepeated" type="password" class="form-control text-center"
+                                id="passwordRepeated" appBootstrapValidation data-cy="password-repeated">
+                        </div>
+
+                        @if (signupError()) {
+                        <div class="alert alert-danger m-0 text-center">
+                            @switch (signupError()) {
+                            @case ('EMAIL_EXISTS') {
+                            <ng-container i18n>The email already exists</ng-container>
+                            }
+                            @case ('WEAK_PASSWORD') {
+                            <ng-container i18n>Password should be at least 6 characters</ng-container>
+                            }
+                            @default {
+                            {{signupError()}}
+                            }
+                            }
+                        </div>
+                        }
+
+                        <button class="btn btn-success btn-lg px-5" [disabled]="signupForm.invalid || isWorking()"
+                            (click)="signup()">
+                            <span class="me-2" *appSpinner="isWorking()"></span>
+                            <span i18n>Signup</span>
+                        </button>
+
+                        <button class="btn btn-link px-5" routerLink="/login" i18n>
+                            Back to login
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-langauage-picker class="mb-4"></app-langauage-picker>

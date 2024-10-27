@@ -1,0 +1,184 @@
+name: Deploy Apps
+
+on:
+  release:
+    types: [released]
+  # push:
+  #   branches:
+  #     - main
+
+jobs:
+  build-web-app:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Build with version tag
+        run: |
+          echo "{\"build\":\"$(git describe --tags --always)\"}" > src/version.json
+          npm run build:absolute-root-url
+
+      - name: Create arifact folder for upload
+        run: |
+          mkdir artifact
+          cp -r dist artifact
+          
+      - name: Upload dist folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: ./artifact
+
+  build-android-app:
+    runs-on: ubuntu-latest
+    needs: build-web-app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install NPM packages
+        run: npm install
+        
+      - name: Download web app dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+
+      - name: Scaffold Android build files
+        run: |
+          npx cap add android
+          npx cap sync android
+
+      - name: Set App version
+        run: |
+          cd android
+          versionCode=$(git rev-list --count HEAD)
+          versionName=$(git describe --tags --always)
+          # Capacitor doesn't let us pass in the build version from the outside, so we'll do it the hacky way
+          sed -i "s/versionCode 1/versionCode ${versionCode}/g" app/build.gradle
+          sed -i "s/versionName \"1.0\"/versionName \"$versionName\"/g" app/build.gradle
+
+      - name: Decode base64 Keystore secret to file
+        env:
+          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+        run: |
+          cd android
+          echo "$ANDROID_KEYSTORE_FILE" | base64 --decode > android-key.keystore
+
+      - name: Build Android App
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          npx cap build --keystorepath android-key.keystore --keystorepass $ANDROID_KEYSTORE_PASSWORD --keystorealias android-key-ngx-todo --keystorealiaspass $ANDROID_KEYSTORE_PASSWORD --androidreleasetype APK android
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-build
+          path: ./android/app/build/outputs/apk/release/app-release-signed.apk
+          
+#   build-ios-app:
+#     runs-on: macos-latest
+#     needs: build-web-app
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Build Angular App
+#         run: |
+#           npm install
+#           npm run build:absolute-root-url
+
+#       - name: Create iOS build files
+#         run: |
+#           npx cap add ios
+#           npx cap sync ios
+
+#       - name: Build iOS App
+#         run: |
+#           cd ios/App
+#           xcodebuild -workspace App.xcworkspace -scheme App -destination generic/platform=iOS -archivePath App.xcarchive archive CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" DEVELOPMENT_TEAM=""
+#           cd App.xcarchive/Products/Applications
+#           mkdir Payload
+#           cp -R App.app Payload/
+#           zip -qq -r -9 ios-latest.ipa Payload
+
+#       - name: Store IPA
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: ios-build
+#           path: ./ios/
+
+  deploy-to-vps:
+    runs-on: ubuntu-latest
+    needs: build-android-app
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Download web app dist folder
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+        
+      - name: Download APK
+        uses: actions/download-artifact@v4
+        with:
+          name: android-build
+
+      - name: Store SSL secrets
+        env:
+          SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE }}
+          SSL_KEY: ${{ secrets.SSL_KEY }}
+        run: |
+          echo "$SSL_CERTIFICATE" > ngx-todo_com_chain.crt
+          echo "$SSL_KEY" > ngx_todo_com.key
+
+      - name: Build Docker image
+        env:
+          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          versionTag=$(git describe --tags --always)
+          sed -i "s/VERSION_TAG/$versionTag/g" nginx.conf
+          docker build -t $DOCKER_USERNAME/ngx-todo:$versionTag .
+
+      - name: Publish Docker image
+        env:
+          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+        run: |
+          echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+          versionTag=$(git describe --tags --always)
+          docker tag $DOCKER_USERNAME/ngx-todo:$versionTag $DOCKER_USERNAME/ngx-todo:latest
+          docker push $DOCKER_USERNAME/ngx-todo:$versionTag
+          docker push $DOCKER_USERNAME/ngx-todo:latest
+        
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ vars.VPS_SSH_IP }} >> ~/.ssh/known_hosts
+
+      - name: Update Docker Service on VPS
+        run: |
+          versionTag=$(git describe --tags --always)
+          ssh root@${{ vars.VPS_SSH_IP }} "docker pull daniel2202x/ngx-todo:$versionTag && docker service update --image daniel2202x/ngx-todo:$versionTag ngx-todo"

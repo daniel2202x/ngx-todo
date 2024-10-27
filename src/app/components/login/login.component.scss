@@ -1,0 +1,13 @@
+:host {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-market {
+    --bs-btn-bg: black;
+    --bs-btn-color: white;
+    --bs-btn-border-radius: 0.5rem;
+    --bs-btn-border-color: #a6a6a6;
+}

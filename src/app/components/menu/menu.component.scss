@@ -1,0 +1,16 @@
+:host {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    z-index: 10;
+}
+
+.menu-left {
+    flex: 0 0 max(12rem, 25%);
+    backdrop-filter: blur(4px);
+}
+
+.menu-right {
+    flex: 0 1 100%;
+    backdrop-filter: blur(4px);
+}

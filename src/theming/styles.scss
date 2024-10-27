@@ -1,0 +1,11 @@
+input.form-control,
+textarea.form-control,
+input.form-control:focus,
+textarea.form-control:focus {
+    background-color: $gray-100;
+}
+
+small,
+.small {
+    font-size: 0.65rem;
+}

@@ -1,0 +1,32 @@
+/* ### Bootstrap theming ### */
+// set Bootstrap varialbes (colours, border radius, font etc.)
+@import 'theming/font.scss';
+@import 'theming/variables.scss';
+// import Bootstrap
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'bootstrap-icons/font/bootstrap-icons.scss';
+// overwrite custom styles
+@import 'theming/styles.scss';
+
+
+/* ### Country Flags ### */
+$flag-icons-use-square: false;
+@import "flag-icons/sass/flag-icons.scss";
+
+
+/* ### Utility classes ### */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-move {
+    cursor: move;
+}
+
+.resize-none {
+    resize: none;
+}
+
+.justify-self-end {
+    justify-self: end;
+}
