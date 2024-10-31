@@ -22,7 +22,6 @@ export interface Document {
 
 export interface GetDocument extends Document {
     name: string;
-    createTime: string;
 }
 
 export interface GetManyResponse {

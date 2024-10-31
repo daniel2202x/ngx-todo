@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 
-import { TodoService } from '@app/services';
+import { OfflineService, TodoService } from '@app/services';
 import { MenuComponent } from '@app/components';
 import { IconComponent } from '@app/directives';
 
@@ -16,6 +16,8 @@ import { IconComponent } from '@app/directives';
 export class ShellComponent {
   private router = inject(Router);
   private todoService = inject(TodoService);
+
+  offlineService = inject(OfflineService);
 
   showMenu = signal(false);
 

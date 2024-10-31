@@ -13,6 +13,9 @@
             <main class="overflow-auto h-100">
                 <router-outlet></router-outlet>
             </main>
+            @if (offlineService.isOffline()) {
+            <div class="bg-warning text-center" i18n>Offline</div>
+            }
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@ The only todo app you'll ever need.
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`
-2. Run `npm install`
+2. Run `npm install --legacy-peer-deps` (the Angular PWA package cannot install without `--legacy-peer-deps`)
 3. Run `ng serve` or `npm run serve` to spin up a dev server on `http://localhost:4200`
 
 ## Important Notes For Advanced Users
@@ -18,11 +18,14 @@ The only todo app you'll ever need.
   - _Hint:_ In VS Code, click on both files you want to compare (e. g. `messages.xlf` and `messages.de.xlf`) while holding the `ctrl` key, then right-click and choose **Compare Selected**. This makes the localisation process so much easier.
   - The `messages.xlf` and `messages.de.xlf` should be exactly the same except for the `<target>` tags inside the `de` version (or other languages respectively)
 
-## Remaining Work
-- convert to offline capable pwa
-- improve icon
+## Backlog (prioritised)
+- nginx http to https redirect
+- add full offline sync support
 - make capacitor app work on ios
 - replace firebase with self-hosted supabase in docker
-- display loading placeholders instead of plain 'Loading' text
-- code coverage measurement
+- alert user to download mobile app when on mobile browser
 - add tests for responsiveness & offline bevaviour
+- code coverage measurement
+- fix dependabot ssl issue
+- pentesting
+- display loading placeholders instead of plain 'Loading' text

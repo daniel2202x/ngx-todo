@@ -53,7 +53,8 @@
                 }
               ],
               "outputHashing": "all",
-              "i18nMissingTranslation": "error"
+              "i18nMissingTranslation": "error",
+              "serviceWorker": "ngsw-config.json"
             },
             "development": {
               "optimization": false,
