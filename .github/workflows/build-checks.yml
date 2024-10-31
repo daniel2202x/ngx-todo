@@ -39,7 +39,7 @@ jobs:
       - name: Configure nginx
         run: |
           cp cypress/ssl/localhost.crt ssl_certificate.crt
-          cp cypress/ssl/localhost.crt ssl_certificate_key.key
+          cp cypress/ssl/localhost.key ssl_certificate_key.key
           sed -i "s/VERSION_TAG/1.0/g" nginx.conf
 
       - name: Run Cypress

@@ -29,7 +29,7 @@ The only todo app you'll ever need.
 - make capacitor app work on ios
 - replace firebase with self-hosted supabase in docker
 - alert user to download mobile app when on mobile browser
-- add tests for responsiveness & offline bevaviour
+- add tests for responsiveness
 - code coverage measurement
 - i18n tests
 - pentesting
