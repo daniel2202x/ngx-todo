@@ -7,7 +7,7 @@ The only todo app you'll ever need.
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`
-2. Run `npm install --legacy-peer-deps` (the Angular PWA package cannot install without `--legacy-peer-deps`)
+2. Run `npm install --force` (the Angular PWA package cannot install without `--force`)
 3. Run `ng serve` or `npm run serve` to spin up a dev server on `http://localhost:4200`
 
 ## Important Notes For Advanced Users

@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install NPM packages
-        run: npm install --legacy-peer-deps
+        run: npm install --force
 
       - name: Build with version tag
         run: |
@@ -52,7 +52,7 @@ jobs:
         uses: android-actions/setup-android@v3
 
       - name: Install NPM packages
-        run: npm install --legacy-peer-deps
+        run: npm install --force
         
       - name: Download web app dist folder
         uses: actions/download-artifact@v4
@@ -102,7 +102,7 @@ jobs:
 
 #       - name: Build Angular App
 #         run: |
-#           npm install --legacy-peer-deps
+#           npm install --force
 #           npm run build:absolute-root-url
 
 #       - name: Create iOS build files

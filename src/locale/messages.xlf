@@ -106,6 +106,13 @@
           <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="313850810538580916" datatype="html">
+        <source>Offline</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shell/shell.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1466012768716286509" datatype="html">
         <source>Sign Up</source>
         <context-group purpose="location">
@@ -218,8 +225,8 @@
           <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1890349492245525290" datatype="html">
-        <source>Please refresh the page</source>
+      <trans-unit id="2222955931547347463" datatype="html">
+        <source>Update now</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
           <context context-type="linenumber">7,8</context>
