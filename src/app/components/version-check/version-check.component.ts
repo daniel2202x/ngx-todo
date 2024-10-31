@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { SwUpdate } from '@angular/service-worker';
 
 import { Capacitor } from '@capacitor/core';
 
@@ -31,13 +30,7 @@ export class VersionCheckComponent {
     )
   );
 
-  private sw = inject(SwUpdate);
-
   async updatePWA() {
-    if (this.sw.isEnabled) {
-      await this.sw.checkForUpdate();
-    }
-
     location.reload();
   }
 }

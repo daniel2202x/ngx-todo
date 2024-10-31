@@ -2,3 +2,8 @@
     display: block;
     height: 100vh;
 }
+
+img {
+    height: calc(2rem + 1.5vw); // same calculation as font-size from .fs-1
+    margin-left: -7px;
+}
