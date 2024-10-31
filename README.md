@@ -20,10 +20,12 @@ The only todo app you'll ever need.
 - `e2e`: Same as running `npm run serve` and then `npm run cypress:open`
 - `cypress:open`: Opens the Cypress UI ready for testing
 - `cypress:run`: Runs all Cypress tests in headless mode
-- `docker:*`: Mimics a production build of the app. Only used by Cypress in GitHub Actions. To use locally run `npm run build` first, then `npm run docker:serve`. This doesn't include the service worker
+- `docker:kill`: Forcefully removes the ngx-todo-frontend image from the local machine (only used in conjunction with `npm run docker:serve`)
+- `docker:build`: Builds a Docker image that mimics a production build of the app (only used by Cypress and for local testing)
+- `docker:run`: Runs the image built with `npm run docker:build` (also only used by Cypress and for local testing)
+- `docker:serve`: Same as running `docker:kill`, `docker:build` and `docker:run`. Useful for testing a production build locally. Run `npm run build` beforehand. This doesn't include the service worker
 
 ## Backlog (prioritised)
-- use icon for capacitor app
 - fix language selection when on installed pwa
 - fix pwa mobile scrolling issue: don't allow user to scroll the whole page
 - add full offline sync support

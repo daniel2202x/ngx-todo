@@ -63,6 +63,7 @@ jobs:
         run: |
           npx cap add android
           npx cap sync android
+          npx capacitor-assets generate
 
       - name: Set App version
         run: |
