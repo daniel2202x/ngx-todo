@@ -26,8 +26,6 @@ The only todo app you'll ever need.
 - `docker:serve`: Same as running `docker:kill`, `docker:build` and `docker:run`. Useful for testing a production build locally. Run `npm run build` beforehand. This doesn't include the service worker
 
 ## Backlog (prioritised)
-- fix language selection when on installed pwa
-- fix pwa mobile scrolling issue: don't allow user to scroll the whole page
 - add full offline sync support
 - make capacitor app work on ios
 - replace firebase with self-hosted supabase in docker
