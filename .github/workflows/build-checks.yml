@@ -37,12 +37,9 @@ jobs:
         run: npm run build
 
       - name: Configure nginx
-        env:
-          SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE }}
-          SSL_KEY: ${{ secrets.SSL_KEY }}
         run: |
-          echo "$SSL_CERTIFICATE" > ngx-todo_com_chain.crt
-          echo "$SSL_KEY" > ngx_todo_com.key
+          cp cypress/ssl/localhost.crt ssl_certificate.crt
+          cp cypress/ssl/localhost.crt ssl_certificate_key.key
           sed -i "s/VERSION_TAG/1.0/g" nginx.conf
 
       - name: Run Cypress

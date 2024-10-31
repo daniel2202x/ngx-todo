@@ -21,7 +21,7 @@ jobs:
       - name: Build with version tag
         run: |
           echo "{\"build\":\"$(git describe --tags --always)\"}" > src/version.json
-          npm run build:absolute-root-url
+          npm run build:capacitor
 
       - name: Create arifact folder for upload
         run: |
@@ -148,8 +148,8 @@ jobs:
           SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE }}
           SSL_KEY: ${{ secrets.SSL_KEY }}
         run: |
-          echo "$SSL_CERTIFICATE" > ngx-todo_com_chain.crt
-          echo "$SSL_KEY" > ngx_todo_com.key
+          echo "$SSL_CERTIFICATE" > ssl_certificate.crt
+          echo "$SSL_KEY" > ssl_certificate_key.key
 
       - name: Build Docker image
         env:

@@ -53,13 +53,15 @@
                 }
               ],
               "outputHashing": "all",
-              "i18nMissingTranslation": "error",
-              "serviceWorker": "ngsw-config.json"
+              "i18nMissingTranslation": "error"
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "include-service-worker": {
+              "serviceWorker": "ngsw-config.json"
             },
             "absolute-root-url": {
               "fileReplacements": [
