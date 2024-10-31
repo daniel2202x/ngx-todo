@@ -18,12 +18,24 @@
           <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1897773288834524107" datatype="html">
+        <source>Installing on iOS</source>
+        <target>Installation auf iOS</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5018804994794983050" datatype="html">
         <source>Signup</source>
         <target>Account erstellen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
@@ -35,7 +47,59 @@
         <target>Todo bearbeiten</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="137926154298165123" datatype="html">
+        <source>A native app for iOS is on the way! Until then, follow these steps to get the best experience for NGX Todo on iOS:</source>
+        <target>Eine iOS-App ist auf dem Weg! Bis dahin kannst Du für die bestmögliche Nutzung von NGX Todo auf iOS diese Schritte befolgen:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8602770252201152446" datatype="html">
+        <source>Tap on the share <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/share.jpeg&quot; alt=&quot;&quot;&gt;"/> button</source>
+        <target>Tippe auf den Teilen-Button <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/share.jpeg&quot; alt=&quot;&quot;&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2350939973926818382" datatype="html">
+        <source>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add-to-home-screen.jpeg&quot;
+                    alt=&quot;Add to Home Screen&quot;&gt;"/></source>
+        <target>Scrolle ein bisschen runter und tippe auf <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add-to-home-screen.jpeg&quot;
+                    alt=&quot;Add to Home Screen&quot;&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9163490927261870610" datatype="html">
+        <source>Tap <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add.jpeg&quot; alt=&quot;Add&quot;&gt;"/> on the top right corner</source>
+        <target>Tippe oben rechts auf <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add.jpeg&quot; alt=&quot;Add&quot;&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="128020154810150939" datatype="html">
+        <source>Now you can access NGX Todo from your home screen!</source>
+        <target>Jetzt kannst Du NGX Todo von Deinem Startbildschirm öffnen!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5123329383910389651" datatype="html">
+        <source> Back to login
+</source>
+        <target> Zurück zur Anmeldung
+</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">

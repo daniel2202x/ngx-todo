@@ -16,15 +16,16 @@ The only todo app you'll ever need.
 - `build`: Builds the app using the default configuration (production). Mainly used for Cypress and testing
 - `build:capacitor`: Builds the app using the configurations `absolute-root-urls` and `include-service-worker`. Only used when the app gets deployed
 - `lint`: Runs the configured linter
-- `extract-i18n`: Builds the app and recreates `src/locale/messages.xlf`. Should always be run when any HTML has changed
-- `e2e`: Same as `npm run serve` and `npm run cypress:open`
+- `extract-i18n`: Builds the app and recreates `src/locale/messages.xlf`. Should always be run after any HTML was touched
+- `e2e`: Same as running `npm run serve` and then `npm run cypress:open`
 - `cypress:open`: Opens the Cypress UI ready for testing
 - `cypress:run`: Runs all Cypress tests in headless mode
 - `docker:*`: Mimics a production build of the app. Only used by Cypress in GitHub Actions. To use locally run `npm run build` first, then `npm run docker:serve`. This doesn't include the service worker
 
 ## Backlog (prioritised)
-- nginx http to https redirect
-- fix dependabot ssl issue
+- use icon for capacitor app
+- fix language selection when on installed pwa
+- fix pwa mobile scrolling issue: don't allow user to scroll the whole page
 - add full offline sync support
 - make capacitor app work on ios
 - replace firebase with self-hosted supabase in docker

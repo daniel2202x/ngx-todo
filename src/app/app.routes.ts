@@ -16,6 +16,11 @@ export const routes: Routes = [
         loadComponent: () => import('./components/login/login.component').then(c => c.LoginComponent)
     },
     {
+        path: 'ios-install',
+        title: $localize`Installing on iOS`,
+        loadComponent: () => import('./components/ios-install-instructions/ios-install-instructions.component').then(c => c.IosInstallInstructionsComponent)
+    },
+    {
         path: 'signup',
         title: $localize`Signup`,
         canActivate: [authGuard],

@@ -1,3 +1,4 @@
+export * from './ios-install-instructions';
 export * from './langauage-picker';
 export * from './login';
 export * from './menu';

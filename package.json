@@ -14,7 +14,7 @@
     "cypress:run": "cypress run",
     "docker:kill": "docker rm -f ngx-todo-frontend",
     "docker:build": "docker build -t ngx-todo-frontend .",
-    "docker:run": "docker run --name ngx-todo-frontend -p 443:443 ngx-todo-frontend",
+    "docker:run": "docker run --name ngx-todo-frontend -p 80:80 -p 443:443 ngx-todo-frontend",
     "docker:serve": "(npm run docker:kill || 0) && npm run docker:build && npm run docker:run"
   },
   "private": true,

@@ -14,7 +14,8 @@ docker login -u daniel2202x -p ...
 # create Docker Service
 docker swarm init
 docker pull daniel2202x/ngx-todo:latest
-docker service create --name ngx-todo --replicas 3 --publish 443:443 daniel2202x/ngx-todo:latest
+docker service create --name ngx-todo --replicas 3 --publish 80:80 --publish 443:443 daniel2202x/ngx-todo:latest
 
 # validate Service
 curl http://localhost
+curl https://localhost

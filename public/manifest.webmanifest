@@ -2,7 +2,7 @@
   "name": "NGX Todo",
   "short_name": "NGX Todo",
   "theme_color": "#e6005c",
-  "background_color": "#fafafa",
+  "background_color": "#fff3cd",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
