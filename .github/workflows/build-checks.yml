@@ -50,5 +50,6 @@ jobs:
         env:
           CYPRESS_BASE_URL: https://localhost/en
         with:
+          install-command: npm install --force
           build: npm run docker:build
           start: npm run docker:run
