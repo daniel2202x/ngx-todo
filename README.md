@@ -33,8 +33,10 @@ The app is available at https://ngx-todo.com and can be used from any platform. 
 - make capacitor app work on ios
 - replace firebase with self-hosted supabase in docker
 - alert user to download mobile app when on mobile browser
+- make side menu open by swiping
 - add tests for responsiveness
 - code coverage measurement
 - i18n tests
 - pentesting
+- ability to edit display name & profile picture
 - display loading placeholders instead of plain 'Loading' text
