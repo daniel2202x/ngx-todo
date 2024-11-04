@@ -19,19 +19,19 @@ import version from '@app/version';
   styleUrl: './version-check.component.scss'
 })
 export class VersionCheckComponent {
-  platform = Capacitor.getPlatform();
+  readonly platform = Capacitor.getPlatform();
 
-  rootUrl = environment.rootUrl;
+  readonly rootUrl = environment.rootUrl;
 
-  private http = inject(HttpClient);
-  needsUpdate = toSignal(this.http
+  private readonly http = inject(HttpClient);
+  readonly needsUpdate = toSignal(this.http
     .get<Version>(environment.rootUrl + '/version')
     .pipe(
       map(serverVersion => serverVersion.build !== version.build)
     )
   );
 
-  private sw = inject(SwUpdate);
+  private readonly sw = inject(SwUpdate);
 
   async updatePWA() {
     if (this.sw.isEnabled) {

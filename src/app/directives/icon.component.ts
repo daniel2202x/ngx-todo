@@ -8,9 +8,9 @@ import { Component, HostBinding, input } from '@angular/core';
 })
 export class IconComponent {
 
-  icon = input.required<string>({ alias: 'app-icon' });
-  colour = input<'success' | 'primary' | 'secondary' | 'danger' | 'link' | 'dark' | null>(null, { alias: 'app-icon-colour' });
-  size = input<'lg' | 'sm' | null>(null, { alias: 'app-icon-size' });
+  readonly icon = input.required<string>({ alias: 'app-icon' });
+  readonly colour = input<'success' | 'primary' | 'secondary' | 'danger' | 'link' | 'dark' | null>(null, { alias: 'app-icon-colour' });
+  readonly size = input<'lg' | 'sm' | null>(null, { alias: 'app-icon-size' });
 
   @HostBinding('class')
   get classes() {

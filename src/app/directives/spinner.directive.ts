@@ -6,11 +6,11 @@ import { Directive, inject, input, OnChanges, Renderer2, TemplateRef, ViewContai
 })
 export class SpinnerDirective implements OnChanges {
 
-  private templateRef = inject(TemplateRef);
-  private viewContainerRef = inject(ViewContainerRef);
-  private renderer = inject(Renderer2);
+  private readonly templateRef = inject(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly renderer = inject(Renderer2);
 
-  loading = input.required<boolean>({ alias: 'appSpinner' });
+  readonly loading = input.required<boolean>({ alias: 'appSpinner' });
 
   ngOnChanges(): void {
     if (this.loading()) {

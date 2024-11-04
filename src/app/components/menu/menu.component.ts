@@ -45,17 +45,17 @@ import version from '@app/version';
   ]
 })
 export class MenuComponent {
-  private authService = inject(AuthService);
-  private authRepository = inject(AuthRepository);
-  private todoService = inject(TodoService);
-  private router = inject(Router);
+  private readonly authService = inject(AuthService);
+  private readonly authRepository = inject(AuthRepository);
+  private readonly todoService = inject(TodoService);
+  private readonly router = inject(Router);
 
-  build = version.build;
+  readonly build = version.build;
 
-  open = model.required<boolean>();
-  menuAnimState = signal<'closed' | 'opened'>('opened');
+  readonly open = model.required<boolean>();
+  readonly menuAnimState = signal<'closed' | 'opened'>('opened');
 
-  displayName$ = this.authRepository.displayName$;
+  readonly displayName$ = this.authRepository.displayName$;
 
   refresh() {
     this.todoService.refreshAll().subscribe();

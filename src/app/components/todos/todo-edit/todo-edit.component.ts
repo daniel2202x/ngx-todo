@@ -20,20 +20,20 @@ import { TodoRepository } from '@app/state';
 })
 export class TodoEditComponent implements OnInit {
 
-  private todoService = inject(TodoService);
-  private pageTitle = inject(Title);
-  private destroyRef = inject(DestroyRef);
-  private route = inject(ActivatedRoute);
-  private todoRepository = inject(TodoRepository);
+  private readonly todoService = inject(TodoService);
+  private readonly pageTitle = inject(Title);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly route = inject(ActivatedRoute);
+  private readonly todoRepository = inject(TodoRepository);
 
-  todoId = input.required<string>();
+  readonly todoId = input.required<string>();
 
-  todoForm = inject(FormBuilder).nonNullable.group({
+  readonly todoForm = inject(FormBuilder).nonNullable.group({
     title: '',
     content: ''
   });
 
-  saveStatus = signal<'saved' | 'unsaved' | 'saving'>('saved');
+  readonly saveStatus = signal<'saved' | 'unsaved' | 'saving'>('saved');
 
   ngOnInit(): void {
     this.loadTodoFromStore();

@@ -14,11 +14,11 @@ import { IconComponent, SpinnerDirective } from '@app/directives';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoSummaryComponent {
-  todo = input.required<GetTodo>();
+  readonly todo = input.required<GetTodo>();
 
-  deleted = output<string>();
+  readonly deleted = output<string>();
 
-  isDeleting = signal(false);
+  readonly isDeleting = signal(false);
 
   deleteTodo(event: Event) {
     event.stopPropagation();

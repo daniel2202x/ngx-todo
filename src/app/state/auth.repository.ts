@@ -26,7 +26,7 @@ persistState(authStore, {
 
 @Injectable({ providedIn: 'root' })
 export class AuthRepository {
-    displayName$ = authStore.pipe(select(auth => auth.displayName));
+    readonly displayName$ = authStore.pipe(select(auth => auth.displayName));
 
     getValue() {
         return authStore.getValue();

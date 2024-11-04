@@ -11,9 +11,9 @@ import { AuthRepository, TodoRepository } from '@app/state';
 })
 export class TodoService {
 
-  private api = inject(ApiService);
-  private authRepository = inject(AuthRepository);
-  private todoRepository = inject(TodoRepository);
+  private readonly api = inject(ApiService);
+  private readonly authRepository = inject(AuthRepository);
+  private readonly todoRepository = inject(TodoRepository);
 
   refreshAll() {
     return this.api.getMany<GetTodo>(`/users/${this.getUserId()}/todos`)

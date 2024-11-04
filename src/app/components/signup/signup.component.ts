@@ -17,18 +17,18 @@ import { LangauagePickerComponent } from '@app/components';
 })
 export class SignupComponent {
 
-  private auth = inject(AuthService);
-  private router = inject(Router);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
-  signupForm = inject(FormBuilder).nonNullable.group({
+  readonly signupForm = inject(FormBuilder).nonNullable.group({
     displayName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
     passwordRepeated: ['', [Validators.required, this.validatePassword.bind(this)]]
   });
 
-  isWorking = signal(false);
-  signupError = signal<string | null>(null);
+  readonly isWorking = signal(false);
+  readonly signupError = signal<string | null>(null);
 
   signup() {
     this.isWorking.set(true);

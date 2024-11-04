@@ -14,12 +14,12 @@ import { IconComponent } from '@app/directives';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent {
-  private router = inject(Router);
-  private todoService = inject(TodoService);
+  private readonly router = inject(Router);
+  private readonly todoService = inject(TodoService);
 
-  offlineService = inject(OfflineService);
+  readonly offlineService = inject(OfflineService);
 
-  showMenu = signal(false);
+  readonly showMenu = signal(false);
 
   createTodo() {
     this.todoService.createEmptyTodo()

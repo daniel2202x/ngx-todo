@@ -33,28 +33,28 @@ import { TodoRepository } from '@app/state';
 })
 export class OverviewComponent implements OnInit {
 
-  private todoService = inject(TodoService);
-  private todoRepository = inject(TodoRepository);
+  private readonly todoService = inject(TodoService);
+  private readonly todoRepository = inject(TodoRepository);
 
-  private destroyRef = inject(DestroyRef);
+  private readonly destroyRef = inject(DestroyRef);
 
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
-  private todos = toSignal(this.todoRepository.allTodos$);
-  todosReversed = computed(() => this.todos()?.slice().sort((a, b) => b.position - a.position));
+  private readonly todos = toSignal(this.todoRepository.allTodos$);
+  readonly todosReversed = computed(() => this.todos()?.slice().sort((a, b) => b.position - a.position));
 
-  searchString = signal('');
-  todosToDisplay = computed(() => this.todos()?.filter(todo => (todo.title || '').toLowerCase().includes(this.searchString().toLowerCase())
+  readonly searchString = signal('');
+  readonly todosToDisplay = computed(() => this.todos()?.filter(todo => (todo.title || '').toLowerCase().includes(this.searchString().toLowerCase())
     || (todo.content || '').toLowerCase().includes(this.searchString().toLowerCase()))
   );
 
-  initiallyLoading = signal(true);
+  readonly initiallyLoading = signal(true);
 
-  todoMoving = signal<string | null>(null);
+  readonly todoMoving = signal<string | null>(null);
 
   // handling views on different routes based on screen size involves observing both the screen width and where the navigation currently is
-  isLargeScreen$ = inject(BreakpointObserver).observe('(min-width: 768px)').pipe(map(result => result.matches));
-  isOnOverviewPage = signal(this.router.url.endsWith('todos')); // has to be set initially and everytime the router navigates (see ngOnInit)
+  readonly isLargeScreen$ = inject(BreakpointObserver).observe('(min-width: 768px)').pipe(map(result => result.matches));
+  readonly isOnOverviewPage = signal(this.router.url.endsWith('todos')); // has to be set initially and everytime the router navigates (see ngOnInit)
 
   ngOnInit(): void {
     this.todoService.refreshAll()

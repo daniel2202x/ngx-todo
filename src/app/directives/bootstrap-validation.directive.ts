@@ -7,8 +7,8 @@ import { FormControlName, FormGroupDirective } from '@angular/forms';
 })
 export class BootstrapValidationDirective {
 
-  private formGroup = inject(FormGroupDirective);
-  private formControlName = inject(FormControlName);
+  private readonly formGroup = inject(FormGroupDirective);
+  private readonly formControlName = inject(FormControlName);
 
   @HostBinding('class.is-valid')
   get isValid() {

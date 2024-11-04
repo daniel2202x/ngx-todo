@@ -15,7 +15,7 @@ const baseUrl = '/api';
 })
 export class ApiService {
 
-  private http = inject(HttpClient);
+  private readonly http = inject(HttpClient);
 
   getOne<T>(uri: string) {
     return this.http.get<GetDocument>(environment.rootUrl + baseUrl + uri, this.getOptions())

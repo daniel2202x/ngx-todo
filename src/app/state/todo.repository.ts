@@ -18,7 +18,7 @@ persistState(todosStore, {
 
 @Injectable({ providedIn: 'root' })
 export class TodoRepository {
-    allTodos$ = todosStore.pipe(selectAllEntities());
+    readonly allTodos$ = todosStore.pipe(selectAllEntities());
 
     getById$(id: string) {
         return todosStore.pipe(selectEntity(id));

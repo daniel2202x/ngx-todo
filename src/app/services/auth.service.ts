@@ -16,10 +16,10 @@ const baseUrl = '/auth';
   providedIn: 'root'
 })
 export class AuthService {
-  private http = inject(HttpClient);
-  private router = inject(Router);
+  private readonly http = inject(HttpClient);
+  private readonly router = inject(Router);
 
-  private authRepository = inject(AuthRepository);
+  private readonly authRepository = inject(AuthRepository);
 
   login(credentials: Credentials) {
     return this.http.post<AuthResponse>(environment.rootUrl + baseUrl + '/login', { ...credentials, returnSecureToken: true })

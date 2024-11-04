@@ -20,18 +20,18 @@ import { LangauagePickerComponent } from '@app/components';
 })
 export class LoginComponent {
 
-  private auth = inject(AuthService);
-  private router = inject(Router);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
 
-  loginForm = inject(FormBuilder).nonNullable.group({
+  readonly loginForm = inject(FormBuilder).nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
 
-  isWorking = signal(false);
-  loginError = signal(false);
+  readonly isWorking = signal(false);
+  readonly loginError = signal(false);
 
-  sessionExpired = input<boolean>();
+  readonly sessionExpired = input<boolean>();
 
   get isWeb() {
     return Capacitor.getPlatform() === 'web';
