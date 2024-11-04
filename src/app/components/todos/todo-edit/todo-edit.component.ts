@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 
 import { debounceTime, filter, switchMap, tap } from 'rxjs';
 
@@ -23,10 +23,10 @@ export class TodoEditComponent implements OnInit {
   private readonly todoService = inject(TodoService);
   private readonly pageTitle = inject(Title);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly route = inject(ActivatedRoute);
   private readonly todoRepository = inject(TodoRepository);
 
   readonly todoId = input.required<string>();
+  private readonly todoId$ = toObservable(this.todoId);
 
   readonly todoForm = inject(FormBuilder).nonNullable.group({
     title: '',
@@ -41,10 +41,10 @@ export class TodoEditComponent implements OnInit {
   }
 
   private loadTodoFromStore() {
-    this.route.params
+    this.todoId$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        switchMap(params => this.todoRepository.getById$(params['todoId'])),
+        switchMap(id => this.todoRepository.getById$(id)),
         filter(todo => !!todo)
       )
       .subscribe(todo => {
