@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
-import { OfflineService, TodoService } from '@app/services';
+import { Actions } from '@ngneat/effects-ng';
+
+import { OfflineService } from '@app/services';
 import { MenuComponent } from '@app/components';
 import { IconComponent } from '@app/directives';
+import { createTodo } from '@app/actions';
 
 @Component({
   selector: 'app-shell',
@@ -14,18 +17,13 @@ import { IconComponent } from '@app/directives';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent {
-  private readonly router = inject(Router);
-  private readonly todoService = inject(TodoService);
-
+  private readonly actions = inject(Actions);
   readonly offlineService = inject(OfflineService);
 
   readonly showMenu = signal(false);
 
   createTodo() {
-    this.todoService.createEmptyTodo()
-      .subscribe(todo => {
-        this.router.navigate(['todos', todo.id]);
-      });
+    this.actions.dispatch(createTodo());
   }
 
   openMenu() {

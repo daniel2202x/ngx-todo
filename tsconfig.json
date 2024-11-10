@@ -24,11 +24,17 @@
       "dom"
     ],
     "paths": {
+      "@app/actions": [
+        "./src/app/actions"
+      ],
       "@app/components": [
         "./src/app/components"
       ],
       "@app/directives": [
         "./src/app/directives"
+      ],
+      "@app/effects": [
+        "./src/app/effects"
       ],
       "@app/guards": [
         "./src/app/guards"

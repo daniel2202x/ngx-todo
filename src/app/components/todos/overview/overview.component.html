@@ -18,7 +18,8 @@
                             [cdkDragHandleDisabled]="!!searchString()" [attr.data-cy]="'drag-handle-' + idx"
                             [class.cursor-move]="!searchString()">
                             @if (!searchString()) {
-                            <span *appSpinner="todoMoving() === todo.id" data-cy="save-drag-spinner"></span>
+                            <span *appSpinner="todo.id  === (positionUpdatesLoading$ | async)"
+                                data-cy="save-drag-spinner"></span>
                             <i class="bi bi-grip-vertical"></i>
                             }
                         </div>
@@ -26,7 +27,7 @@
                     }
                     } @empty {
                     <div class="fst-italic text-center">
-                        @if (initiallyLoading()){
+                        @if (isLoading$ | async){
                         <ng-container i18n>Loading...</ng-container>
                         } @else {
                         <ng-container i18n>Nothing to do, all done!</ng-container>

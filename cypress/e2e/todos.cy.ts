@@ -13,7 +13,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-content-input').type('including testing & vite');
 
         // wait for save chain to complete
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -33,7 +32,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-content-input').type('- more angular\n- rust\n- go');
 
         // wait for save chain to complete
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -50,7 +48,6 @@ describe('Todo handling', () => {
         cy.getBySel('add-todo').click();
         cy.getBySel('todo-title-input').type('Todo 1 Title');
         cy.getBySel('todo-content-input').type('Todo 1 Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -59,7 +56,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-title-input').should('have.value', '');
         cy.getBySel('todo-title-input').type('Todo 2 Title');
         cy.getBySel('todo-content-input').type('Todo 2 Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -78,7 +74,6 @@ describe('Todo handling', () => {
         cy.getBySel('add-todo').click();
         cy.getBySel('todo-title-input').type('Todo1Title');
         cy.getBySel('todo-content-input').type('Todo1Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -87,7 +82,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-title-input').should('have.value', '');
         cy.getBySel('todo-title-input').type('Todo2Title');
         cy.getBySel('todo-content-input').type('Todo2Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -96,7 +90,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-title-input').should('have.value', '');
         cy.getBySel('todo-title-input').type('Todo3Title');
         cy.getBySel('todo-content-input').type('Todo3Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -105,7 +98,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-title-input').should('have.value', '');
         cy.getBySel('todo-title-input').type('Todo4Title');
         cy.getBySel('todo-content-input').type('Todo4Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -114,7 +106,6 @@ describe('Todo handling', () => {
         cy.getBySel('todo-title-input').should('have.value', '');
         cy.getBySel('todo-title-input').type('Todo5Title');
         cy.getBySel('todo-content-input').type('Todo5Content');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -126,7 +117,6 @@ describe('Todo handling', () => {
         // edit third todo
         cy.contains('Todo3Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
         cy.getBySel('back').click();
@@ -134,7 +124,6 @@ describe('Todo handling', () => {
         // edit fifth todo
         cy.contains('Todo5Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
         cy.getBySel('back').click();
@@ -181,7 +170,6 @@ describe('Todo handling', () => {
         // create todo
         cy.getBySel('add-todo').click();
         cy.getBySel('todo-title-input').type('Learn');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -192,7 +180,6 @@ describe('Todo handling', () => {
 
         // edit todo
         cy.getBySel('todo-content-input').type('Angular & more');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 
@@ -207,7 +194,6 @@ describe('Todo handling', () => {
         // create todo
         cy.getBySel('add-todo').click();
         cy.getBySel('todo-title-input').type('Learn Angular');
-        cy.contains('Unsaved').should('exist');
         cy.contains('Saving...').should('exist');
         cy.contains('Saved').should('exist');
 

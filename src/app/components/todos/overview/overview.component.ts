@@ -7,13 +7,15 @@ import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } fro
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
-import { filter, forkJoin, map } from 'rxjs';
+import { filter, map, Subject, switchMap } from 'rxjs';
 
-import { GetTodo } from '@app/models';
+import { Actions } from '@ngneat/effects-ng';
+
+import { Todo } from '@app/models';
 import { SpinnerDirective, BootstrapValidationDirective } from '@app/directives';
-import { TodoService } from '@app/services';
 import { TodoSummaryComponent } from '@app/components';
 import { TodoRepository } from '@app/state';
+import { deleteTodo, loadTodos, updateTodoPositions } from '@app/actions';
 
 @Component({
   selector: 'app-overview',
@@ -33,11 +35,10 @@ import { TodoRepository } from '@app/state';
 })
 export class OverviewComponent implements OnInit {
 
-  private readonly todoService = inject(TodoService);
   private readonly todoRepository = inject(TodoRepository);
 
   private readonly destroyRef = inject(DestroyRef);
-
+  private readonly actions = inject(Actions);
   private readonly router = inject(Router);
 
   private readonly todos = toSignal(this.todoRepository.allTodos$);
@@ -48,17 +49,21 @@ export class OverviewComponent implements OnInit {
     || (todo.content || '').toLowerCase().includes(this.searchString().toLowerCase()))
   );
 
-  readonly initiallyLoading = signal(true);
+  readonly isLoading$ = this.todoRepository.fetchResult$.pipe(map(result => result.isLoading));
 
-  readonly todoMoving = signal<string | null>(null);
+  private readonly positionChanged$ = new Subject<string>();
+  readonly positionUpdatesLoading$ = this.positionChanged$.pipe(
+    switchMap(todoId => this.todoRepository.getPositionUpdateResult$().pipe(
+      map(({ isLoading }) => isLoading ? todoId : null)
+    ))
+  );
 
   // handling views on different routes based on screen size involves observing both the screen width and where the navigation currently is
   readonly isLargeScreen$ = inject(BreakpointObserver).observe('(min-width: 768px)').pipe(map(result => result.matches));
   readonly isOnOverviewPage = signal(this.router.url.endsWith('todos')); // has to be set initially and everytime the router navigates (see ngOnInit)
 
   ngOnInit(): void {
-    this.todoService.refreshAll()
-      .subscribe(() => this.initiallyLoading.set(false));
+    this.actions.dispatch(loadTodos());
 
     this.router.events
       .pipe(
@@ -71,21 +76,17 @@ export class OverviewComponent implements OnInit {
   }
 
   deleteTodo(id: string) {
-    this.todoService.deleteTodo(id)
-      .subscribe();
+    this.actions.dispatch(deleteTodo({ id }));
   }
 
-  drop(event: CdkDragDrop<GetTodo[] | undefined, GetTodo[], GetTodo>) {
+  drop(event: CdkDragDrop<Todo[] | undefined, Todo[], Todo>) {
     const sortedTodos = event.container.data?.slice();
     if (sortedTodos) {
       moveItemInArray(sortedTodos, event.previousIndex, event.currentIndex);
+      const newOrder = sortedTodos.reverse().map(t => t.id);
+      this.actions.dispatch(updateTodoPositions({ newOrder }));
 
-      // optimistic update
-      const updatedTodos = this.todoRepository.updatePositions(sortedTodos.reverse());
-
-      this.todoMoving.set(event.item.data.id);
-      forkJoin(updatedTodos.map(todo => this.todoService.updateTodo(todo.id, { position: todo.position })))
-        .subscribe(() => this.todoMoving.set(null));
+      this.positionChanged$.next(event.item.data.id);
     }
   }
 }

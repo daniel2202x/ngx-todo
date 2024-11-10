@@ -235,14 +235,14 @@
         <source>Loading...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/overview/overview.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9145884654397180658" datatype="html">
         <source>Nothing to do, all done!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/overview/overview.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8890553633144307762" datatype="html">
@@ -252,39 +252,32 @@
           <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6333335057236774263" datatype="html">
-        <source>Saved</source>
+      <trans-unit id="3407061818321766940" datatype="html">
+        <source>Saving...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
           <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3506804875657080331" datatype="html">
-        <source>Unsaved</source>
+      <trans-unit id="6333335057236774263" datatype="html">
+        <source>Saved</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
           <context context-type="linenumber">12,13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3407061818321766940" datatype="html">
-        <source>Saving...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8693414454705808287" datatype="html">
         <source>Title...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="665870996015497421" datatype="html">
         <source>Content...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5572169381936915463" datatype="html">

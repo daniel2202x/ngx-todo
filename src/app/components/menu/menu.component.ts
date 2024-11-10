@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, model, signal } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 
-import { TodoService, AuthService } from '@app/services';
+import { Actions } from '@ngneat/effects-ng';
+
+import { AuthService } from '@app/services';
 import { IconComponent } from '@app/directives';
 import { LangauagePickerComponent } from '@app/components';
 import { AuthRepository } from '@app/state';
 
 import version from '@app/version';
+import { createTodo, loadTodos } from '@app/actions';
 
 @Component({
   selector: 'app-menu',
@@ -47,8 +49,7 @@ import version from '@app/version';
 export class MenuComponent {
   private readonly authService = inject(AuthService);
   private readonly authRepository = inject(AuthRepository);
-  private readonly todoService = inject(TodoService);
-  private readonly router = inject(Router);
+  private readonly actions = inject(Actions);
 
   readonly build = version.build;
 
@@ -58,7 +59,7 @@ export class MenuComponent {
   readonly displayName$ = this.authRepository.displayName$;
 
   refresh() {
-    this.todoService.refreshAll().subscribe();
+    this.actions.dispatch(loadTodos());
   }
 
   logout() {
@@ -76,10 +77,7 @@ export class MenuComponent {
   }
 
   createTodo() {
-    this.todoService.createEmptyTodo()
-      .subscribe(todo => {
-        this.close();
-        this.router.navigate(['todos', todo.id]);
-      });
+    this.close();
+    this.actions.dispatch(createTodo());
   }
 }

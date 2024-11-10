@@ -1,29 +1,32 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { AsyncPipe } from '@angular/common';
 
-import { debounceTime, filter, switchMap, tap } from 'rxjs';
+import { debounceTime, filter, map, merge, of, switchMap, tap } from 'rxjs';
 
-import { TodoService } from '@app/services';
+import { Actions } from '@ngneat/effects-ng';
+
 import { IconComponent, BootstrapValidationDirective } from '@app/directives';
 import { TodoRepository } from '@app/state';
+import { updateTodo } from '@app/actions';
 
 @Component({
   selector: 'app-todo-edit',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, BootstrapValidationDirective, IconComponent],
+  imports: [RouterLink, ReactiveFormsModule, BootstrapValidationDirective, IconComponent, AsyncPipe],
   templateUrl: './todo-edit.component.html',
   styleUrl: './todo-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoEditComponent implements OnInit {
 
-  private readonly todoService = inject(TodoService);
   private readonly pageTitle = inject(Title);
   private readonly destroyRef = inject(DestroyRef);
   private readonly todoRepository = inject(TodoRepository);
+  private readonly actions = inject(Actions);
 
   readonly todoId = input.required<string>();
   private readonly todoId$ = toObservable(this.todoId);
@@ -33,37 +36,32 @@ export class TodoEditComponent implements OnInit {
     content: ''
   });
 
-  readonly saveStatus = signal<'saved' | 'unsaved' | 'saving'>('saved');
+  readonly saveStatus$ = merge(
+    of('idle'),
+    this.todoForm.valueChanges.pipe(
+      debounceTime(200),
+      tap(value => this.actions.dispatch(updateTodo({ id: this.todoId(), ...value }))),
+      switchMap(() => this.todoRepository.getFetchResultById$(this.todoId()).pipe(
+        map(result => result.status)
+      ))
+    )
+  );
 
   ngOnInit(): void {
     this.loadTodoFromStore();
-    this.listenFormChanges();
   }
 
   private loadTodoFromStore() {
     this.todoId$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        switchMap(id => this.todoRepository.getById$(id)),
+        switchMap(id => this.todoRepository.getTodoById$(id)),
         filter(todo => !!todo)
       )
       .subscribe(todo => {
         this.setPageTitle(todo.title);
         this.todoForm.patchValue(todo, { emitEvent: false });
       });
-  }
-
-  private listenFormChanges() {
-    this.todoForm.valueChanges
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        tap(() => this.saveStatus.set('unsaved')),
-        debounceTime(200),
-        tap(() => this.saveStatus.set('saving')),
-        switchMap((value) => this.todoService.updateTodo(this.todoId(), value)),
-        tap((todo) => this.setPageTitle(todo.title))
-      )
-      .subscribe(() => this.saveStatus.set('saved'));
   }
 
   private setPageTitle(title: string) {

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { GetTodo } from '@app/models';
+import { Todo } from '@app/models';
 import { MultiLineAbbreviationPipe } from '@app/pipes';
 import { IconComponent, SpinnerDirective } from '@app/directives';
 
@@ -14,7 +14,7 @@ import { IconComponent, SpinnerDirective } from '@app/directives';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoSummaryComponent {
-  readonly todo = input.required<GetTodo>();
+  readonly todo = input.required<Todo>();
 
   readonly deleted = output<string>();
 

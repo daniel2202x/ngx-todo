@@ -4,15 +4,12 @@
             <span class="ms-1" i18n>Back</span>
         </a>
 
-        @switch (saveStatus()) {
-        @case ('saved') {
-        <span class="badge text-bg-secondary" i18n>Saved</span>
-        }
-        @case ('unsaved') {
-        <span class="badge text-bg-warning" i18n>Unsaved</span>
-        }
-        @case ('saving') {
+        @switch (saveStatus$ | async) {
+        @case ('loading') {
         <span class="badge text-bg-info" i18n>Saving...</span>
+        }
+        @default {
+        <span class="badge text-bg-secondary" i18n>Saved</span>
         }
         }
     </div>

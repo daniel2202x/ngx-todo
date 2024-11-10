@@ -39,4 +39,3 @@ The app is available at https://ngx-todo.com and can be used from any platform. 
 - i18n tests
 - pentesting
 - ability to edit display name & profile picture
-- display loading placeholders instead of plain 'Loading' text
