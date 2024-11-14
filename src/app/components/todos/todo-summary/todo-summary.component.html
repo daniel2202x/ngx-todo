@@ -1,6 +1,8 @@
 <div class="card cursor-pointer mb-3" [routerLink]="todo().id" [class.pe-none]="isDeleting()">
     <div class="card-body">
-        <ng-content></ng-content>
+        <div class="drag-handle">
+            <ng-content></ng-content>
+        </div>
         <h6 class="card-title m-0 fw-bold" data-cy="todo-title">{{todo().title}}</h6>
         <span class="card-text d-inline-flex align-items-center" data-cy="todo-content">
             {{todo().content | multiLineAbbreviation}}

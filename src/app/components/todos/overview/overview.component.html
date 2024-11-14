@@ -5,30 +5,30 @@
             <div class="d-flex flex-column h-100">
                 <div class="p-3 pt-1">
                     <input class="form-control" type="search" i18n-placeholder placeholder="Search everywhere..."
-                        [(ngModel)]="searchString">
+                        [(ngModel)]="searchString" data-cy="search-string">
                 </div>
                 <div class="px-3 h-100 overflow-y-auto overflow-x-hidden" cdkDropList
-                    [cdkDropListData]="todosReversed()" (cdkDropListDropped)="drop($event)" data-cy="drop-container">
-                    @for (todo of todosReversed(); track todo.id; let idx = $index) {
+                    [cdkDropListData]="todosReversed$ | async" (cdkDropListDropped)="drop($event)"
+                    data-cy="drop-container">
+                    @for (todo of (todosReversed$ | async); track todo.id; let idx = $index) {
                     @defer {
                     <app-todo-summary cdkDrag [cdkDragData]="todo" [todo]="todo" (deleted)="deleteTodo($event)"
                         class="d-block overflow-hidden position-relative" [@todoDeleteSlideOut]
-                        [class.d-none]="!todosToDisplay()?.includes(todo)">
-                        <div class="align-self-stretch d-flex align-items-center gap-2 p-1" cdkDragHandle
-                            [cdkDragHandleDisabled]="!!searchString()" [attr.data-cy]="'drag-handle-' + idx"
-                            [class.cursor-move]="!searchString()">
-                            @if (!searchString()) {
+                        [class.d-none]="!(todosToDisplay$ | async)?.includes(todo)">
+                        @if (!searchString()) {
+                        <div class="align-self-stretch d-flex align-items-center gap-2 p-1 cursor-move" cdkDragHandle
+                            [attr.data-cy]="'drag-handle-' + idx">
                             <span *appSpinner="todo.id  === (positionUpdatesLoading$ | async)"
                                 data-cy="save-drag-spinner"></span>
                             <i class="bi bi-grip-vertical"></i>
-                            }
                         </div>
+                        }
                     </app-todo-summary>
                     }
                     } @empty {
                     <div class="fst-italic text-center">
                         @if (isLoading$ | async){
-                        <ng-container i18n>Loading...</ng-container>
+                        <span *appSpinner="true"></span>
                         } @else {
                         <ng-container i18n>Nothing to do, all done!</ng-container>
                         }

@@ -9,14 +9,14 @@ import { debounceTime, filter, map, merge, of, switchMap, tap } from 'rxjs';
 
 import { Actions } from '@ngneat/effects-ng';
 
-import { IconComponent, BootstrapValidationDirective } from '@app/directives';
+import { IconComponent } from '@app/directives';
 import { TodoRepository } from '@app/state';
 import { updateTodo } from '@app/actions';
 
 @Component({
   selector: 'app-todo-edit',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, BootstrapValidationDirective, IconComponent, AsyncPipe],
+  imports: [RouterLink, ReactiveFormsModule, IconComponent, AsyncPipe],
   templateUrl: './todo-edit.component.html',
   styleUrl: './todo-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -41,7 +41,7 @@ export class TodoEditComponent implements OnInit {
     this.todoForm.valueChanges.pipe(
       debounceTime(200),
       tap(value => this.actions.dispatch(updateTodo({ id: this.todoId(), ...value }))),
-      switchMap(() => this.todoRepository.getFetchResultById$(this.todoId()).pipe(
+      switchMap(() => this.todoRepository.getPatchResultById$(this.todoId()).pipe(
         map(result => result.status)
       ))
     )

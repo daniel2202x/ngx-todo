@@ -15,7 +15,3 @@
 .cdk-drop-list-dragging app-todo-summary:not(.cdk-drag-placeholder) {
     transition: transform 250ms;
 }
-
-.cdk-drag-handle {
-    grid-row-end: span 2;
-}

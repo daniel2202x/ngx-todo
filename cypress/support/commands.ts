@@ -5,15 +5,28 @@ export { };
 declare global {
     namespace Cypress {
         interface Chainable {
-            getBySel(selector: string): Chainable<JQuery<Node>>;
+            getBySel(...selectors: string[]): Chainable<JQuery<Node>>;
+            containsTimes(str: string, times: number): Chainable<any>;
 
             createTestUser(fillLocalStorage?: boolean): Chainable<any>;
+
+            createTodo(title: string | null, content: string | null): Chainable<any>;
         }
     }
 }
 
-Cypress.Commands.add('getBySel', (selector: string) => {
-    return cy.get(`[data-cy=${selector}]`);
+Cypress.Commands.add('getBySel', (...selectors: string[]) => {
+    return cy.get(selectors.map(sel => `[data-cy=${sel}]`).join(', '));
+});
+
+Cypress.Commands.add('containsTimes', { prevSubject: 'element' }, (subject: JQuery<Node>, str: string, times: number) => {
+    return cy.wrap(subject)
+        .filter((index, el) => !Cypress.$(el).parents().hasClass('d-none'))
+        .invoke('text')
+        .then(text => {
+            const matches = (text.match(new RegExp(str, 'g')) || []).length;
+            expect(matches).to.equal(times);
+        });
 });
 
 Cypress.Commands.add('createTestUser', (fillLocalStorage = true) => {
@@ -46,4 +59,22 @@ Cypress.Commands.add('createTestUser', (fillLocalStorage = true) => {
                 });
             }
         });
+});
+
+Cypress.Commands.add('createTodo', (title: string | null, content: string | null) => {
+    if (title || content) {
+        cy.getBySel('add-todo').click();
+        cy.getBySel('todo-title-input').should('have.value', '');
+
+        if (title) {
+            cy.getBySel('todo-title-input').type(title);
+        }
+
+        if (content) {
+            cy.getBySel('todo-content-input').type(content);
+        }
+
+        cy.contains('Saving...').should('exist');
+        cy.contains('Saved').should('exist');
+    }
 });

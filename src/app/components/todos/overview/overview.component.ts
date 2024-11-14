@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, DestroyRef, inject, OnInit, signal, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
@@ -12,7 +12,7 @@ import { filter, map, Subject, switchMap } from 'rxjs';
 import { Actions } from '@ngneat/effects-ng';
 
 import { Todo } from '@app/models';
-import { SpinnerDirective, BootstrapValidationDirective } from '@app/directives';
+import { SpinnerDirective } from '@app/directives';
 import { TodoSummaryComponent } from '@app/components';
 import { TodoRepository } from '@app/state';
 import { deleteTodo, loadTodos, updateTodoPositions } from '@app/actions';
@@ -20,7 +20,7 @@ import { deleteTodo, loadTodos, updateTodoPositions } from '@app/actions';
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [TodoSummaryComponent, ReactiveFormsModule, FormsModule, BootstrapValidationDirective, SpinnerDirective, CdkDropList, CdkDrag, CdkDragHandle, RouterOutlet, AsyncPipe],
+  imports: [TodoSummaryComponent, ReactiveFormsModule, FormsModule, SpinnerDirective, CdkDropList, CdkDrag, CdkDragHandle, RouterOutlet, AsyncPipe],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,18 +36,15 @@ import { deleteTodo, loadTodos, updateTodoPositions } from '@app/actions';
 export class OverviewComponent implements OnInit {
 
   private readonly todoRepository = inject(TodoRepository);
-
   private readonly destroyRef = inject(DestroyRef);
   private readonly actions = inject(Actions);
   private readonly router = inject(Router);
 
-  private readonly todos = toSignal(this.todoRepository.allTodos$);
-  readonly todosReversed = computed(() => this.todos()?.slice().sort((a, b) => b.position - a.position));
+  readonly todosReversed$ = this.todoRepository.allTodos$.pipe(map(todos => todos.slice().sort((a, b) => b.position - a.position)));
 
   readonly searchString = signal('');
-  readonly todosToDisplay = computed(() => this.todos()?.filter(todo => (todo.title || '').toLowerCase().includes(this.searchString().toLowerCase())
-    || (todo.content || '').toLowerCase().includes(this.searchString().toLowerCase()))
-  );
+  private readonly searchString$ = toObservable(this.searchString);
+  readonly todosToDisplay$ = this.searchString$.pipe(switchMap(search => this.todoRepository.filterFullText$(search)));
 
   readonly isLoading$ = this.todoRepository.fetchResult$.pipe(map(result => result.isLoading));
 
@@ -79,9 +76,9 @@ export class OverviewComponent implements OnInit {
     this.actions.dispatch(deleteTodo({ id }));
   }
 
-  drop(event: CdkDragDrop<Todo[] | undefined, Todo[], Todo>) {
-    const sortedTodos = event.container.data?.slice();
-    if (sortedTodos) {
+  drop(event: CdkDragDrop<Todo[] | null, Todo[] | null, Todo>) {
+    if (event.container.data) {
+      const sortedTodos = event.container.data.slice();
       moveItemInArray(sortedTodos, event.previousIndex, event.currentIndex);
       const newOrder = sortedTodos.reverse().map(t => t.id);
       this.actions.dispatch(updateTodoPositions({ newOrder }));

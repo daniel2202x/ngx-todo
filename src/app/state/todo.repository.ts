@@ -33,22 +33,31 @@ export class TodoRepository {
         todoStore.update(setEntities(todos));
     }
 
+    filterFullText$(searchString: string) {
+        return this.allTodos$.pipe(
+            map(todos => todos.filter(todo => todo.title.toLowerCase().includes(searchString.toLowerCase())
+                || todo.content.toLowerCase().includes(searchString.toLowerCase())))
+        )
+    }
+
     getPositionUpdateResult$() {
         const todos = todoStore.query(getAllEntities());
         return combineLatest(todos.map(todo => todoStore.pipe(
             selectEntity(todo.id),
             joinRequestResult([`patch-todo-position-${todo.id}`])
         )))
-            .pipe(map(results => ({
-                isLoading: results.some(result => result.isLoading)
-            })));
+            .pipe(
+                map(results => ({
+                    isLoading: results.some(result => result.isLoading)
+                }))
+            );
     }
 
     getTodoById$(id: string) {
         return todoStore.pipe(selectEntity(id));
     }
 
-    getFetchResultById$(id: string) {
+    getPatchResultById$(id: string) {
         return todoStore.pipe(selectEntity(id), joinRequestResult([`patch-todo-${id}`]));
     }
 
