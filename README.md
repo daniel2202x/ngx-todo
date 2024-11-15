@@ -1,4 +1,4 @@
-# NG<img src="public/icons/icon-72x72.png" alt="X" style="width: auto; height: 40px; vertical-align: top; margin-left: -5px;"> Todo
+# NG![X](readme-logo.svg) Todo
 
 The only todo app you'll ever need.
 
