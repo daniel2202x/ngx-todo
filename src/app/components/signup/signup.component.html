@@ -30,9 +30,9 @@
                                 id="passwordRepeated" appBootstrapValidation data-cy="password-repeated">
                         </div>
 
-                        @if (signupError()) {
+                        @if (errorMessage$ | async; as errorMsg) {
                         <div class="alert alert-danger m-0 text-center">
-                            @switch (signupError()) {
+                            @switch (errorMsg) {
                             @case ('EMAIL_EXISTS') {
                             <ng-container i18n>The email already exists</ng-container>
                             }
@@ -40,15 +40,15 @@
                             <ng-container i18n>Password should be at least 6 characters</ng-container>
                             }
                             @default {
-                            {{signupError()}}
+                            {{ errorMsg }}
                             }
                             }
                         </div>
                         }
 
-                        <button class="btn btn-success btn-lg px-5" [disabled]="signupForm.invalid || isWorking()"
-                            (click)="signup()">
-                            <span class="me-2" *appSpinner="isWorking()"></span>
+                        <button class="btn btn-success btn-lg px-5"
+                            [disabled]="signupForm.invalid || (isLoading$ | async)" (click)="signup()">
+                            <span class="me-2" *appSpinner="!!(isLoading$ | async)"></span>
                             <span i18n>Signup</span>
                         </button>
 

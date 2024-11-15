@@ -44,7 +44,7 @@ export class TodoRepository {
         const todos = todoStore.query(getAllEntities());
         return combineLatest(todos.map(todo => todoStore.pipe(
             selectEntity(todo.id),
-            joinRequestResult([`patch-todo-position-${todo.id}`])
+            joinRequestResult([`patch-todo-position`, todo.id])
         )))
             .pipe(
                 map(results => ({
@@ -58,7 +58,7 @@ export class TodoRepository {
     }
 
     getPatchResultById$(id: string) {
-        return todoStore.pipe(selectEntity(id), joinRequestResult([`patch-todo-${id}`]));
+        return todoStore.pipe(selectEntity(id), joinRequestResult(['patch-todo', id]));
     }
 
     getMaxPosition() {

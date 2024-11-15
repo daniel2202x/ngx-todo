@@ -1,24 +1,28 @@
-import { Component, inject, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { AsyncPipe } from '@angular/common';
 
-import { catchError, throwError } from 'rxjs';
+import { Actions } from '@ngneat/effects-ng';
 
-import { AuthService } from '@app/services';
+import { filter, map } from 'rxjs';
+
 import { SpinnerDirective, BootstrapValidationDirective } from '@app/directives';
 import { LangauagePickerComponent } from '@app/components';
+import { signup } from '@app/actions';
+import { AuthRepository } from '@app/state';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, SpinnerDirective, RouterLink, LangauagePickerComponent, BootstrapValidationDirective],
+  imports: [ReactiveFormsModule, SpinnerDirective, RouterLink, LangauagePickerComponent, BootstrapValidationDirective, AsyncPipe],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
 export class SignupComponent {
 
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
+  private readonly actions = inject(Actions);
+  private readonly authRepository = inject(AuthRepository);
 
   readonly signupForm = inject(FormBuilder).nonNullable.group({
     displayName: ['', [Validators.required]],
@@ -27,22 +31,15 @@ export class SignupComponent {
     passwordRepeated: ['', [Validators.required, this.validatePassword.bind(this)]]
   });
 
-  readonly isWorking = signal(false);
-  readonly signupError = signal<string | null>(null);
+  readonly isLoading$ = this.authRepository.signupResult$.pipe(map(res => res.isLoading));
+  readonly errorMessage$ = this.authRepository.signupResult$.pipe(
+    filter(res => res.isError),
+    map(res => res.error.error.error.message.split(' ')[0])
+  )
 
   signup() {
-    this.isWorking.set(true);
-
     const form = this.signupForm.getRawValue();
-    this.auth.signup(form)
-      .pipe(
-        catchError(error => {
-          this.isWorking.set(false);
-          this.signupError.set(error?.error?.error?.message?.split(' ')[0]);
-          return throwError(() => error);
-        })
-      )
-      .subscribe(() => this.router.navigateByUrl('/todos'));
+    this.actions.dispatch(signup(form));
   }
 
   private validatePassword(control: AbstractControl): ValidationErrors | null {

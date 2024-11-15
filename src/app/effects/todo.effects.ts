@@ -37,7 +37,7 @@ export class TodoEffects {
         ofType(updateTodo),
         switchMap(todo => this.todoService.patchTodo(todo.id, todo).pipe(
             tap(todo => this.todoRepository.updateTodo(todo.id, todo)),
-            trackRequestResult([`patch-todo-${todo.id}`], { skipCache: true })
+            trackRequestResult(['patch-todo', todo.id], { skipCache: true })
         ))
     ));
 
@@ -49,7 +49,7 @@ export class TodoEffects {
                 .patchTodo(todo.id, { position: todo.position })
                 .pipe(
                     tap(todo => this.todoRepository.updateTodo(todo.id, { position: todo.position })), // persist position comming from server just to be safe
-                    trackRequestResult([`patch-todo-position-${todo.id}`], { skipCache: true })
+                    trackRequestResult([`patch-todo-position`, todo.id], { skipCache: true })
                 )
             ));
         })

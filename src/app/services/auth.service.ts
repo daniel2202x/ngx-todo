@@ -4,8 +4,6 @@ import { Router } from '@angular/router';
 
 import { getRegistry } from '@ngneat/elf';
 
-import { map, switchMap, tap } from 'rxjs';
-
 import { Credentials, AuthResponse, ProfileLookupResponse, RefreshResponse, SignupCredentials } from '@app/models';
 import { environment } from '@app/environment';
 import { AuthRepository } from '@app/state';
@@ -41,26 +39,22 @@ export class AuthService {
   }
 
   signup(credentials: SignupCredentials) {
-    return this.http.post<AuthResponse>(environment.rootUrl + baseUrl + '/signup', { ...credentials, returnSecureToken: true })
-      .pipe(
-        switchMap(signupRes => this.updateProfile(credentials.displayName, signupRes.idToken).pipe(map(() => signupRes))),
-        tap(signupRes => {
-          this.authRepository.update({
-            idToken: signupRes.idToken,
-            refreshToken: signupRes.refreshToken,
-            email: credentials.email,
-            userId: signupRes.localId,
-            displayName: credentials.displayName
-          });
-        })
-      );
+    return this.http.post<AuthResponse>(
+      environment.rootUrl + baseUrl + '/signup',
+      {
+        ...credentials,
+        returnSecureToken: true
+      }
+    );
   }
 
-  updateProfile(displayName: string, idToken: string) {
+  updateProfile(displayName: string) {
     return this.http.post(
       environment.rootUrl + baseUrl + '/update-profile',
       {
-        displayName, idToken, returnSecureToken: false
+        displayName,
+        idToken: this.authRepository.getValue().idToken,
+        returnSecureToken: false
       }
     );
   }

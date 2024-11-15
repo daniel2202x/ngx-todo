@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { createStore, select, withProps } from '@ngneat/elf';
@@ -27,6 +28,7 @@ export class AuthRepository {
     readonly displayName$ = authStore.pipe(select(auth => auth.displayName));
 
     readonly loginResult$ = authStore.pipe(joinRequestResult(['login'], { initialStatus: 'idle' }));
+    readonly signupResult$ = authStore.pipe(joinRequestResult<AuthProps, HttpErrorResponse>(['signup'], { initialStatus: 'idle' }));
 
     getValue() {
         return authStore.getValue();
