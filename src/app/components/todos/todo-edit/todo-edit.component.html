@@ -1,5 +1,5 @@
-<div class="d-flex flex-column h-100 p-3 pt-0 gap-1">
-    <div class="d-flex justify-content-between justify-content-md-end align-items-center mb-2">
+<div class="d-flex flex-column h-100">
+    <div class="d-flex justify-content-between justify-content-md-end align-items-center px-3">
         <a class="d-md-none" routerLink=".." data-cy="back" app-icon="arrow-left" app-icon-colour="link">
             <span class="ms-1" i18n>Back</span>
         </a>
@@ -14,10 +14,11 @@
         }
     </div>
 
-    <form [formGroup]="todoForm" class="flex-grow-1 d-flex flex-column">
-        <input data-cy="todo-title-input" formControlName="title" class="form-control mb-3 fw-bold" i18n-placeholder
-            placeholder="Title...">
-        <textarea data-cy="todo-content-input" formControlName="content" class="flex-grow-1 form-control resize-none"
-            i18n-placeholder placeholder="Content..."></textarea>
+    <form [formGroup]="todoForm" class="flex-grow-1 d-flex flex-column m-md-3">
+        <input data-cy="todo-title-input" formControlName="title"
+            class="form-control fw-bold rounded-0 border-0 pt-2 shadow-none" i18n-placeholder placeholder="Title...">
+        <textarea data-cy="todo-content-input" formControlName="content"
+            class="flex-grow-1 form-control resize-none rounded-0 border-0 pt-0 shadow-none" i18n-placeholder
+            placeholder="Content..."></textarea>
     </form>
 </div>

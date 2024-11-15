@@ -1,0 +1,18 @@
+// we have to set border and border-radius here because Bootstrap doesn't provide responsive utility classes for them
+@media (min-width: 768px) {
+    form {
+        input {
+            border: var(--bs-border-width) solid var(--bs-border-color) !important;
+            border-bottom: none !important;
+            border-top-left-radius: var(--bs-border-radius) !important;
+            border-top-right-radius: var(--bs-border-radius) !important;
+        }
+
+        textarea {
+            border: var(--bs-border-width) solid var(--bs-border-color) !important;
+            border-top: none !important;
+            border-bottom-left-radius: var(--bs-border-radius) !important;
+            border-bottom-right-radius: var(--bs-border-radius) !important;
+        }
+    }
+}

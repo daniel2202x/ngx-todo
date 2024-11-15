@@ -203,7 +203,7 @@
         <target>Offline</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/shell/shell.component.html</context>
-          <context context-type="linenumber">17,18</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1466012768716286509" datatype="html">
@@ -307,7 +307,7 @@
         <target>Inhalt...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5572169381936915463" datatype="html">

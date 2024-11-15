@@ -5,10 +5,11 @@
 
     <div class="container-fluid container-xxl p-0 h-100">
         <div class="d-flex flex-column h-100">
-            <nav class="navbar w-100 p-2 justify-content-between align-items-center">
+            <nav class="navbar w-100 p-2 pb-0 pb-md-2 justify-content-between align-items-center">
                 <button class="border-0 fs-1 py-0" (click)="openMenu()" data-cy="menu-open" app-icon="list"></button>
                 <span class="mb-0 fs-1 fw-bold d-flex align-items-center">NG<img src="favicon.ico" alt="X"> Todo</span>
-                <button (click)="createTodo()" data-cy="add-todo" app-icon="plus" app-icon-colour="success"></button>
+                <button (click)="createTodo()" data-cy="add-todo" app-icon="plus" app-icon-colour="success"
+                    class="me-1"></button>
             </nav>
             <main class="overflow-auto h-100">
                 <router-outlet></router-outlet>
