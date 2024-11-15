@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal, } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AsyncPipe } from '@angular/common';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 
-import { filter, map, Subject, switchMap } from 'rxjs';
+import { filter, map, merge, of, Subject, switchMap } from 'rxjs';
 
 import { Actions } from '@ngneat/effects-ng';
 
@@ -36,7 +36,6 @@ import { deleteTodo, loadTodos, updateTodoPositions } from '@app/actions';
 export class OverviewComponent implements OnInit {
 
   private readonly todoRepository = inject(TodoRepository);
-  private readonly destroyRef = inject(DestroyRef);
   private readonly actions = inject(Actions);
   private readonly router = inject(Router);
 
@@ -57,19 +56,16 @@ export class OverviewComponent implements OnInit {
 
   // handling views on different routes based on screen size involves observing both the screen width and where the navigation currently is
   readonly isLargeScreen$ = inject(BreakpointObserver).observe('(min-width: 768px)').pipe(map(result => result.matches));
-  readonly isOnOverviewPage = signal(this.router.url.endsWith('todos')); // has to be set initially and everytime the router navigates (see ngOnInit)
+  readonly isOnOverviewPage$ = merge( // has to be set both initially and everytime the router navigates
+    of(this.router.url.endsWith('todos')),
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(event => event.url.endsWith('todos'))
+    )
+  );
 
   ngOnInit(): void {
     this.actions.dispatch(loadTodos());
-
-    this.router.events
-      .pipe(
-        takeUntilDestroyed(this.destroyRef),
-        filter(event => event instanceof NavigationEnd)
-      )
-      .subscribe(event => {
-        this.isOnOverviewPage.set(event.url.endsWith('todos'));
-      });
   }
 
   deleteTodo(id: string) {

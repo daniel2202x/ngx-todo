@@ -1,4 +1,4 @@
-@if (isOnOverviewPage() || (isLargeScreen$ | async)) {
+@if ((isOnOverviewPage$ | async) || (isLargeScreen$ | async)) {
 <div class="container-fluid p-0 h-100">
     <div class="row m-0 h-100">
         <div class="col-12 col-md-6 p-0 h-100">
