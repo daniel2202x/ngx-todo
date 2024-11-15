@@ -16,8 +16,8 @@
                         class="d-block overflow-hidden position-relative" [@todoDeleteSlideOut]
                         [class.d-none]="!(todosToDisplay$ | async)?.includes(todo)">
                         @if (!searchString()) {
-                        <div class="align-self-stretch d-flex align-items-center gap-2 p-1 cursor-move" cdkDragHandle
-                            [attr.data-cy]="'drag-handle-' + idx">
+                        <div class="align-self-stretch d-flex align-items-center gap-2 p-1 cursor-move h-100"
+                            cdkDragHandle [attr.data-cy]="'drag-handle-' + idx">
                             <span *appSpinner="todo.id  === (positionUpdatesLoading$ | async)"
                                 data-cy="save-drag-spinner"></span>
                             <i class="bi bi-grip-vertical"></i>

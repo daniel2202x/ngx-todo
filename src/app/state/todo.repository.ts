@@ -23,7 +23,7 @@ persistState(todoStore, {
 export class TodoRepository {
 
     readonly allTodos$ = todoStore.pipe(selectAllEntities());
-    readonly fetchResult$ = todoStore.pipe(selectAllEntities(), joinRequestResult(['get-todos']));
+    readonly fetchAllResult$ = todoStore.pipe(selectAllEntities(), joinRequestResult(['get-todos']));
 
     addTodo(todo: Todo) {
         todoStore.update(addEntities(todo));

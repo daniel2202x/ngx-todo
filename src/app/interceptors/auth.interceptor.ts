@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError, switchMap, tap, throwError } from 'rxjs';
 
 import { IS_DATABASE_REQUEST, AuthService } from '@app/services';
 import { AuthRepository } from '@app/state';
@@ -15,12 +15,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (isDatabaseRequest) {
     const reqWithHeaders = () => req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + authRepository.getValue().idToken) });
 
-    const refresh$ = authService.refresh().pipe(catchError(error => {
-      // in case the refresh token itself is invalid, shouldn't occur 99% of the time, only if a major account change
-      // was done for the user like changing a password (in such case the user would have to log in again anyway)
-      authService.logout(true);
-      return throwError(() => error);
-    }));
+    const refresh$ = authService.getRefreshToken().pipe(
+      tap(res => {
+        authRepository.setTokens(res.id_token, res.refresh_token);
+      }),
+      catchError(error => {
+        // in case the refresh token itself is invalid, shouldn't occur 99% of the time, only if a major account change
+        // was done for the user like changing a password (in such case the user would have to log in again anyway)
+        authService.logout(true);
+        return throwError(() => error);
+      })
+    );
 
     return next(reqWithHeaders()).pipe(catchError(error => {
       if (error.status === 401) {

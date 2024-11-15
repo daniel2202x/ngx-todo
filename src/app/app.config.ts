@@ -7,7 +7,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideEffectsManager, provideEffects } from '@ngneat/effects-ng';
 
 import { authInterceptor, offlineInterceptor } from '@app/interceptors';
-import { TodoEffects } from '@app/effects';
+import { AuthEffects, TodoEffects } from '@app/effects';
 
 import { routes } from './app.routes';
 
@@ -22,6 +22,6 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     provideEffectsManager(),
-    provideEffects(TodoEffects)
+    provideEffects(AuthEffects, TodoEffects)
   ]
 };

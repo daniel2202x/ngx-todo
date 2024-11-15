@@ -46,7 +46,7 @@ export class OverviewComponent implements OnInit {
   private readonly searchString$ = toObservable(this.searchString);
   readonly todosToDisplay$ = this.searchString$.pipe(switchMap(search => this.todoRepository.filterFullText$(search)));
 
-  readonly isLoading$ = this.todoRepository.fetchResult$.pipe(map(result => result.isLoading));
+  readonly isLoading$ = this.todoRepository.fetchAllResult$.pipe(map(result => result.isLoading));
 
   private readonly positionChanged$ = new Subject<string>();
   readonly positionUpdatesLoading$ = this.positionChanged$.pipe(

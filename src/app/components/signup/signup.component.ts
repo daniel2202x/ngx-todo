@@ -34,7 +34,7 @@ export class SignupComponent {
     this.isWorking.set(true);
 
     const form = this.signupForm.getRawValue();
-    this.auth.signup(form, form.displayName)
+    this.auth.signup(form)
       .pipe(
         catchError(error => {
           this.isWorking.set(false);

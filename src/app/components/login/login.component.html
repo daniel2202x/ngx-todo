@@ -24,15 +24,15 @@
                         </div>
                         }
 
-                        @if (loginError()) {
+                        @if ((loginResult$ | async)?.isError) {
                         <div class="alert alert-danger m-0" i18n>
                             Invalid email or password
                         </div>
                         }
 
-                        <button class="btn btn-primary btn-lg px-5" [disabled]="loginForm.invalid || isWorking()"
-                            (click)="login()">
-                            <span class="me-2" *appSpinner="isWorking()"></span>
+                        <button class="btn btn-primary btn-lg px-5"
+                            [disabled]="loginForm.invalid || (loginResult$ | async)?.isLoading" (click)="login()">
+                            <span class="me-2" *appSpinner="!!(loginResult$ | async)?.isLoading"></span>
                             <span i18n>Login</span>
                         </button>
 
