@@ -21,6 +21,7 @@ export class TodoEffects {
         ofType(createTodo),
         switchMap(() => this.todoService.postTodo({ title: '', content: '', position: this.todoRepository.getMaxPosition() + 1 }).pipe(
             tap(todo => this.todoRepository.addTodo(todo)),
+            trackRequestResult(['post-todo'], { skipCache: true }),
             tap(todo => this.router.navigate(['todos', todo.id]))
         ))
     ));

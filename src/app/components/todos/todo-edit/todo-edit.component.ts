@@ -41,7 +41,7 @@ export class TodoEditComponent implements OnInit {
     this.todoForm.valueChanges.pipe(
       debounceTime(200),
       tap(value => this.actions.dispatch(updateTodo({ id: this.todoId(), ...value }))),
-      switchMap(() => this.todoRepository.getPatchResultById$(this.todoId()).pipe(
+      switchMap(() => this.todoRepository.getUpdateResultById$(this.todoId()).pipe(
         map(result => result.status)
       ))
     )

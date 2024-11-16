@@ -203,7 +203,7 @@
         <target>Offline</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/shell/shell.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1466012768716286509" datatype="html">
@@ -323,7 +323,7 @@
         <target>Jetzt aktualisieren</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3937193324514348190" datatype="html">
@@ -331,7 +331,7 @@
         <target>Update herunterladen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">10,11</context>
+          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6010957641651616828" datatype="html">
@@ -339,7 +339,7 @@
         <target>Bitte Update in AltStore öffnen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
     </body>

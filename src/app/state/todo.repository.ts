@@ -23,6 +23,8 @@ persistState(todoStore, {
 export class TodoRepository {
 
     readonly allTodos$ = todoStore.pipe(selectAllEntities());
+
+    readonly createTodoResult$ = todoStore.pipe(selectAllEntities(), joinRequestResult(['post-todo'], { initialStatus: 'idle' }));
     readonly fetchAllResult$ = todoStore.pipe(selectAllEntities(), joinRequestResult(['get-todos']));
 
     addTodo(todo: Todo) {
@@ -40,25 +42,8 @@ export class TodoRepository {
         )
     }
 
-    getPositionUpdateResult$() {
-        const todos = todoStore.query(getAllEntities());
-        return combineLatest(todos.map(todo => todoStore.pipe(
-            selectEntity(todo.id),
-            joinRequestResult([`patch-todo-position`, todo.id])
-        )))
-            .pipe(
-                map(results => ({
-                    isLoading: results.some(result => result.isLoading)
-                }))
-            );
-    }
-
     getTodoById$(id: string) {
         return todoStore.pipe(selectEntity(id));
-    }
-
-    getPatchResultById$(id: string) {
-        return todoStore.pipe(selectEntity(id), joinRequestResult(['patch-todo', id]));
     }
 
     getMaxPosition() {
@@ -73,6 +58,23 @@ export class TodoRepository {
     updatePositions(newOrder: string[]) {
         todoStore.update(updateAllEntities(todo => ({ ...todo, position: newOrder.indexOf(todo.id) + 1 })));
         return todoStore.query(getAllEntities());
+    }
+
+    getUpdateResultById$(id: string) {
+        return todoStore.pipe(selectEntity(id), joinRequestResult(['patch-todo', id]));
+    }
+
+    getPositionUpdateResult$() {
+        const todos = todoStore.query(getAllEntities());
+        return combineLatest(todos.map(todo => todoStore.pipe(
+            selectEntity(todo.id),
+            joinRequestResult([`patch-todo-position`, todo.id])
+        )))
+            .pipe(
+                map(results => ({
+                    isLoading: results.some(result => result.isLoading)
+                }))
+            );
     }
 
     deleteTodo(id: string) {
