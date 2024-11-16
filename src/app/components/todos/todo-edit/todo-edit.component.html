@@ -1,10 +1,10 @@
 <div class="d-flex flex-column h-100">
     <div class="d-flex justify-content-between justify-content-md-end align-items-center px-3">
-        <a class="d-md-none" routerLink=".." data-cy="back" app-icon="arrow-left" app-icon-colour="link">
+        <button class="d-md-none" (click)="goBack()" data-cy="back" app-icon="arrow-left" app-icon-colour="link">
             <span class="ms-1" i18n>Back</span>
-        </a>
+        </button>
 
-        @switch (saveStatus$ | async) {
+        @switch (saveStatus()) {
         @case ('loading') {
         <span class="badge text-bg-info" i18n>Saving...</span>
         }

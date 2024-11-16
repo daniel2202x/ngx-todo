@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { AsyncPipe } from '@angular/common';
+import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 
 import { debounceTime, filter, map, merge, of, switchMap, tap } from 'rxjs';
 
@@ -16,7 +15,7 @@ import { updateTodo } from '@app/actions';
 @Component({
   selector: 'app-todo-edit',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, IconComponent, AsyncPipe],
+  imports: [ReactiveFormsModule, IconComponent],
   templateUrl: './todo-edit.component.html',
   styleUrl: './todo-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -27,6 +26,7 @@ export class TodoEditComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly todoRepository = inject(TodoRepository);
   private readonly actions = inject(Actions);
+  private readonly router = inject(Router);
 
   readonly todoId = input.required<string>();
   private readonly todoId$ = toObservable(this.todoId);
@@ -36,7 +36,7 @@ export class TodoEditComponent implements OnInit {
     content: ''
   });
 
-  readonly saveStatus$ = merge(
+  private readonly saveStatus$ = merge(
     of('idle'),
     this.todoForm.valueChanges.pipe(
       debounceTime(200),
@@ -46,6 +46,7 @@ export class TodoEditComponent implements OnInit {
       ))
     )
   );
+  readonly saveStatus = toSignal(this.saveStatus$);
 
   ngOnInit(): void {
     this.loadTodoFromStore();
@@ -59,12 +60,14 @@ export class TodoEditComponent implements OnInit {
         filter(todo => !!todo)
       )
       .subscribe(todo => {
-        this.setPageTitle(todo.title);
+        this.pageTitle.setTitle(`Todo: ${todo.title}`);
         this.todoForm.patchValue(todo, { emitEvent: false });
       });
   }
 
-  private setPageTitle(title: string) {
-    this.pageTitle.setTitle(`Todo: ${title}`);
+  goBack() {
+    if (this.saveStatus() !== 'loading') {
+      this.router.navigate(['..']);
+    }
   }
 }
