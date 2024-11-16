@@ -4,7 +4,8 @@
     <br>
     @switch (platform) {
     @case ('web') {
-    <button class="btn btn-link" (click)="updatePWA()" i18n>Update now</button>
+    <span *appSpinner="isLoading()"></span>
+    <button class="btn btn-link" (click)="updatePWA()" [disabled]="isLoading()" i18n>Update now</button>
     }
     @case ('android') {
     <a i18n [href]="rootUrl + '/ngx-todo-install.apk'" target="_blank">Download the update</a>
