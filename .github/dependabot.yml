@@ -3,16 +3,15 @@ updates:
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
     groups:
       node-dependencies:
         patterns:
           - '*'
     ignore:
       - dependency-name: 'typescript'
-      - dependency-name: 'zone.js'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
