@@ -30,3 +30,9 @@ $flag-icons-use-square: false;
 .justify-self-end {
     justify-self: end;
 }
+
+/* ### Prevents scrolling the whole page into the 'void', always occurs on iOS and on some Android phones ### */
+html,
+body {
+    overscroll-behavior: none;
+}

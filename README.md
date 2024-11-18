@@ -5,8 +5,7 @@ The only todo app you'll ever need.
 [![Lint & Test](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml/badge.svg)](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml)
 [![Deploy Apps](https://github.com/daniel2202x/ngx-todo/actions/workflows/deploy-release.yml/badge.svg)](https://github.com/daniel2202x/ngx-todo/actions/workflows/deploy-release.yml)
 
-The app is available at https://ngx-todo.com and can be used from any platform. On there you will also find this app as a native Android app which is strongly recommended if you use an Android phone.
-> **Note**: A native app for iOS is on the way! For now you can use the web app, install instructions also on the website.
+The app is available at https://ngx-todo.com and can be used inside any browser on any platform. On there you will also find an installable version of the app for Android and iOS.
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`

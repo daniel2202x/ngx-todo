@@ -46,25 +46,18 @@
           <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="137926154298165123" datatype="html">
-        <source>A native app for iOS is on the way! Until then, follow these steps to get the best experience for NGX Todo on iOS:</source>
+      <trans-unit id="4840221272657140102" datatype="html">
+        <source>Install NGX Todo in 3 easy steps:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
           <context context-type="linenumber">4,5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8502092549689509098" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Important:<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> Select your desired language for NGX Todo <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>first<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> (at the page bottom), then proceed with the following steps. </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8602770252201152446" datatype="html">
         <source>Tap on the share <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/share.jpeg&quot; alt=&quot;&quot;&gt;"/> button</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2350939973926818382" datatype="html">
@@ -72,28 +65,28 @@
                     alt=&quot;Add to Home Screen&quot;&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">13,15</context>
+          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9163490927261870610" datatype="html">
         <source>Tap <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add.jpeg&quot; alt=&quot;Add&quot;&gt;"/> on the top right corner</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="128020154810150939" datatype="html">
-        <source>Now you can access NGX Todo from your home screen!</source>
+      <trans-unit id="3578217639273057874" datatype="html">
+        <source>Done, NGX Todo is installed!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6373315648086148985" datatype="html">
-        <source>If you want to change the language after the app was installed simply reinstall it in the desired language.</source>
+      <trans-unit id="3588283812733276355" datatype="html">
+        <source>If you want to <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>change the language<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> after the app was installed, make sure to uninstall it first and then reinstall it in your desired language.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5123329383910389651" datatype="html">
@@ -101,7 +94,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">
