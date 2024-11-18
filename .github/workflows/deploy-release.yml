@@ -92,39 +92,6 @@ jobs:
         with:
           name: android-build
           path: ./android/app/build/outputs/apk/release/app-release-signed.apk
-          
-#   build-ios-app:
-#     runs-on: macos-latest
-#     needs: build-web-app
-
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-
-#       - name: Build Angular App
-#         run: |
-#           npm install --force
-#           npm run build:absolute-root-url
-
-#       - name: Create iOS build files
-#         run: |
-#           npx cap add ios
-#           npx cap sync ios
-
-#       - name: Build iOS App
-#         run: |
-#           cd ios/App
-#           xcodebuild -workspace App.xcworkspace -scheme App -destination generic/platform=iOS -archivePath App.xcarchive archive CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" DEVELOPMENT_TEAM=""
-#           cd App.xcarchive/Products/Applications
-#           mkdir Payload
-#           cp -R App.app Payload/
-#           zip -qq -r -9 ios-latest.ipa Payload
-
-#       - name: Store IPA
-#         uses: actions/upload-artifact@v4
-#         with:
-#           name: ios-build
-#           path: ./ios/
 
   deploy-to-vps:
     runs-on: ubuntu-latest
