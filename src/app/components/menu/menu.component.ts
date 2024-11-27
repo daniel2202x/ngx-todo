@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 
 import { Actions } from '@ngneat/effects-ng';
 
-import { AuthService } from '@app/services';
+import { AuthService, ShellService } from '@app/services';
 import { IconComponent } from '@app/directives';
 import { LangauagePickerComponent } from '@app/components';
 import { AuthRepository } from '@app/state';
@@ -50,6 +50,7 @@ export class MenuComponent {
   private readonly authService = inject(AuthService);
   private readonly authRepository = inject(AuthRepository);
   private readonly actions = inject(Actions);
+  private readonly shellService = inject(ShellService);
 
   readonly build = version.build;
 
@@ -59,6 +60,7 @@ export class MenuComponent {
   readonly displayName$ = this.authRepository.displayName$;
 
   refresh() {
+    this.shellService.refresh$.next();
     this.actions.dispatch(loadTodos());
   }
 

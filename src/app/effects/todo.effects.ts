@@ -36,8 +36,8 @@ export class TodoEffects {
 
     readonly updateTodo$ = createEffect(actions => actions.pipe(
         ofType(updateTodo),
-        switchMap(todo => this.todoService.patchTodo(todo.id, todo).pipe(
-            tap(todo => this.todoRepository.updateTodo(todo.id, todo)),
+        switchMap(({ type, ...todo }) => this.todoService.patchTodo(todo.id, todo).pipe(
+            tap(updatedTodo => this.todoRepository.updateTodo(updatedTodo.id, updatedTodo)),
             trackRequestResult(['patch-todo', todo.id], { skipCache: true })
         ))
     ));

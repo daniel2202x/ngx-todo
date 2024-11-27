@@ -4,13 +4,14 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 
-import { debounceTime, filter, map, merge, of, switchMap, tap } from 'rxjs';
+import { debounceTime, filter, map, merge, of, switchMap, take, tap } from 'rxjs';
 
 import { Actions } from '@ngneat/effects-ng';
 
 import { IconComponent } from '@app/directives';
 import { TodoRepository } from '@app/state';
 import { updateTodo } from '@app/actions';
+import { ShellService } from '@app/services';
 
 @Component({
   selector: 'app-todo-edit',
@@ -27,6 +28,7 @@ export class TodoEditComponent implements OnInit {
   private readonly todoRepository = inject(TodoRepository);
   private readonly actions = inject(Actions);
   private readonly router = inject(Router);
+  private readonly shellService = inject(ShellService);
 
   readonly todoId = input.required<string>();
   private readonly todoId$ = toObservable(this.todoId);
@@ -49,17 +51,34 @@ export class TodoEditComponent implements OnInit {
   readonly saveStatus = toSignal(this.saveStatus$);
 
   ngOnInit(): void {
-    this.loadTodoFromStore();
+    this.listenForRefresh();
   }
 
-  private loadTodoFromStore() {
-    this.todoId$
+  private listenForRefresh() {
+    // user clicked the refresh button
+    const refresh$ = this.shellService.refresh$
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        switchMap(id => this.todoRepository.getTodoById$(id)),
+        switchMap(() => this.todoRepository.allTodos$.pipe(
+          take(1) // only take the latest slice of the state right after the refresh request succeeded
+        )),
+        map(todos => todos.find(t => t.id === this.todoId())),
         filter(todo => !!todo)
-      )
+      );
+
+    // user navigated to other todo
+    const navigate$ = this.todoId$
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        switchMap(id => this.todoRepository.getTodoById$(id).pipe(
+          take(1) // prevents the todoForm from being set all over again leading
+        )),
+        filter(todo => !!todo)
+      );
+
+    merge(refresh$, navigate$)
       .subscribe(todo => {
+        console.log(todo)
         this.pageTitle.setTitle(`Todo: ${todo.title}`);
         this.todoForm.patchValue(todo, { emitEvent: false });
       });
