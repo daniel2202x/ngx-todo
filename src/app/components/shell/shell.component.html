@@ -7,7 +7,7 @@
         <div class="d-flex flex-column h-100">
             <nav class="navbar w-100 p-2 pb-0 pb-md-2 justify-content-between align-items-center">
                 <button class="border-0 fs-1 py-0" (click)="openMenu()" data-cy="menu-open" app-icon="list"></button>
-                <span class="mb-0 fs-1 fw-bold d-flex align-items-center">NG<img src="favicon.ico" alt="X"> Todo</span>
+                <span class="mb-0 fs-4 fw-bold d-flex align-items-center">NG<img src="favicon.ico" alt="X"> Todo</span>
                 <button (click)="createTodo()" data-cy="add-todo" [app-icon]="(isCreatingTodo$ | async) ? '' : 'plus'"
                     app-icon-colour="success" class="me-1" [disabled]="isCreatingTodo$ | async">
                     <span *appSpinner="!!(isCreatingTodo$ | async)"></span>
