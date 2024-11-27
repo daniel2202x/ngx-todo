@@ -9,5 +9,11 @@ import { AppComponent } from './app/app.component';
 
 initEffects();
 
+document.addEventListener('touchstart', e => {
+  if (e.touches.length > 1) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
