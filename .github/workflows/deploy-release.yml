@@ -48,6 +48,11 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Update Android SDK
+        run: |
+          sdkmanager --update
+          apksigner --version
+
       - name: Install NPM packages
         run: npm install --force
         
