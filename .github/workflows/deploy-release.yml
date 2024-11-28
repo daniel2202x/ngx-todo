@@ -51,15 +51,6 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Update Android SDK
-        run: |
-          echo "finding sdkmanager..."
-          find /usr/local/lib/android/sdk -type f -name "skdmanager"
-          echo "finding apksigner..."
-          find /usr/local/lib/android/sdk -type f -name "apksigner"
-          sdkmanager --update
-          apksigner --version
-
       - name: Install NPM packages
         run: npm install --force
         
@@ -94,6 +85,8 @@ jobs:
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
+          echo "/usr/local/lib/android/sdk/build-tools/35.0.0/apksigner" >> $GITHUB_PATH
+          apksigner --version
           npx cap build --keystorepath android-key.keystore --keystorepass $ANDROID_KEYSTORE_PASSWORD --keystorealias android-key-ngx-todo --keystorealiaspass $ANDROID_KEYSTORE_PASSWORD --androidreleasetype APK android
 
       - name: Upload APK
