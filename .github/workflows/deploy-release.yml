@@ -85,7 +85,7 @@ jobs:
         env:
           ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
-          echo "/usr/local/lib/android/sdk/build-tools/35.0.0/apksigner" >> $GITHUB_PATH
+          echo "/usr/local/lib/android/sdk/build-tools/35.0.0" >> $GITHUB_PATH
           apksigner --version
           npx cap build --keystorepath android-key.keystore --keystorepass $ANDROID_KEYSTORE_PASSWORD --keystorealias android-key-ngx-todo --keystorealiaspass $ANDROID_KEYSTORE_PASSWORD --androidreleasetype APK android
 
