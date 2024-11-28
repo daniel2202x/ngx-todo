@@ -54,9 +54,9 @@ jobs:
       - name: Update Android SDK
         run: |
           echo "finding sdkmanager..."
-          find / -type f -name "skdmanager"
+          find /usr/local/lib/android/sdk -type f -name "skdmanager"
           echo "finding apksigner..."
-          find / -type f -name "apksigner"
+          find /usr/local/lib/android/sdk -type f -name "apksigner"
           sdkmanager --update
           apksigner --version
 
