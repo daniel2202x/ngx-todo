@@ -3,9 +3,6 @@ name: Deploy Apps
 on:
   release:
     types: [released]
-  # push:
-  #   branches:
-  #     - main
 
 jobs:
   build-web-app:

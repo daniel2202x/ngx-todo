@@ -9,6 +9,7 @@ import { AppComponent } from './app/app.component';
 
 initEffects();
 
+// prevent pinch zooming on mobile
 document.addEventListener('touchstart', e => {
   if (e.touches.length > 1) {
     e.preventDefault();
