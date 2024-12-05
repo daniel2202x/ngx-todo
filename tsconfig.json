@@ -54,6 +54,9 @@
       "@app/state": [
         "./src/app/state"
       ],
+      "@app/tokens": [
+        "./src/app/tokens"
+      ],
       "@app/environment": [
         "./src/environments/environment"
       ],

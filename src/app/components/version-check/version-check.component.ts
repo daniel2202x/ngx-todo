@@ -3,14 +3,13 @@ import { Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { SwUpdate } from '@angular/service-worker';
 
-import { Capacitor } from '@capacitor/core';
-
 import { map } from 'rxjs';
 
 import { Version } from '@app/models';
 import { environment } from '@app/environment';
 import version from '@app/version';
 import { SpinnerDirective } from '@app/directives';
+import { DEVICE_PLATFORM } from '@app/tokens';
 
 @Component({
   selector: 'app-version-check',
@@ -20,7 +19,7 @@ import { SpinnerDirective } from '@app/directives';
   styleUrl: './version-check.component.scss'
 })
 export class VersionCheckComponent {
-  readonly platform = Capacitor.getPlatform();
+  readonly platform = inject(DEVICE_PLATFORM)
 
   readonly rootUrl = environment.rootUrl;
 

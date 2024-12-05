@@ -1,10 +1,13 @@
-import { Component, HostBinding, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 
 @Component({
   selector: '[app-icon]',
   standalone: true,
   imports: [],
-  template: `<i [class]="'bi bi-' + icon()"></i> <ng-content></ng-content>`
+  template: `<i [class]="'bi bi-' + icon()"></i> <ng-content></ng-content>`,
+  host: {
+    '[class]': 'classes()'
+  }
 })
 export class IconComponent {
 
@@ -12,8 +15,7 @@ export class IconComponent {
   readonly colour = input<'success' | 'primary' | 'secondary' | 'danger' | 'link' | 'dark' | null>(null, { alias: 'app-icon-colour' });
   readonly size = input<'lg' | 'sm' | null>(null, { alias: 'app-icon-size' });
 
-  @HostBinding('class')
-  get classes() {
+  readonly classes = computed(() => {
     let classes = 'btn';
 
     if (this.colour()) {
@@ -25,6 +27,6 @@ export class IconComponent {
     }
 
     return classes;
-  }
+  });
 
 }

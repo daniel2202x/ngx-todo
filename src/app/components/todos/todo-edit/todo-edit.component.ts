@@ -71,14 +71,13 @@ export class TodoEditComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         switchMap(id => this.todoRepository.getTodoById$(id).pipe(
-          take(1) // prevents the todoForm from being set all over again leading
+          take(1) // prevents the todoForm from being set all over again
         )),
         filter(todo => !!todo)
       );
 
     merge(refresh$, navigate$)
       .subscribe(todo => {
-        console.log(todo)
         this.pageTitle.setTitle(`Todo: ${todo.title}`);
         this.todoForm.patchValue(todo, { emitEvent: false });
       });

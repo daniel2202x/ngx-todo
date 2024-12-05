@@ -3,7 +3,8 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
             <div class="card">
                 <div class="card-body">
-                    <form [formGroup]="loginForm" class="d-flex flex-column gap-4 align-items-center p-3">
+                    <form [formGroup]="loginForm" class="d-flex flex-column gap-4 align-items-center p-3"
+                        (ngSubmit)="login()">
                         <h5 class="card-title fw-bold m-0" i18n>Login</h5>
 
                         <div class="text-center align-self-stretch">
@@ -24,27 +25,27 @@
                         </div>
                         }
 
-                        @if ((loginResult$ | async)?.isError) {
+                        @if (isError()) {
                         <div class="alert alert-danger m-0" i18n>
                             Invalid email or password
                         </div>
                         }
 
-                        <button class="btn btn-primary btn-lg px-5"
-                            [disabled]="loginForm.invalid || (loginResult$ | async)?.isLoading" (click)="login()">
-                            <span class="me-2" *appSpinner="!!(loginResult$ | async)?.isLoading"></span>
+                        <button type="submit" class="btn btn-primary btn-lg px-5"
+                            [disabled]="loginForm.invalid || isLoading()">
+                            <span class="me-2" *appSpinner="isLoading()"></span>
                             <span i18n>Login</span>
                         </button>
 
-                        <button class="btn btn-link px-5" routerLink="/signup" i18n>
+                        <button type="button" class="btn btn-link px-5" routerLink="/signup" i18n>
                             Create Account
                         </button>
                     </form>
                 </div>
             </div>
 
-            @if (isWeb) {
             <div class="d-flex justify-content-center gap-3 mt-3">
+                @if (devicePlatform === 'desktop' || devicePlatform === 'android-web') {
                 <a href="/ngx-todo-install.apk" target="_blank" app-icon="android" app-icon-colour="dark"
                     app-icon-size="lg" class="btn-market d-flex align-items-center gap-2">
                     <span class="d-flex flex-column align-items-start">
@@ -52,6 +53,8 @@
                         <span class="lh-1">Android</span>
                     </span>
                 </a>
+                }
+                @if (devicePlatform === 'desktop' || devicePlatform === 'ios-web') {
                 <a routerLink="/ios-install" app-icon="apple" app-icon-colour="dark" app-icon-size="lg"
                     class="btn-market d-flex align-items-center gap-2">
                     <span class="d-flex flex-column align-items-start">
@@ -59,8 +62,8 @@
                         <span class="lh-1">iOS</span>
                     </span>
                 </a>
+                }
             </div>
-            }
         </div>
     </div>
 </div>

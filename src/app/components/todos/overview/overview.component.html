@@ -27,11 +27,10 @@
                     }
                     } @empty {
                     <div class="fst-italic text-center">
-                        @if (isLoading$ | async){
-                        <span *appSpinner="true"></span>
-                        } @else {
-                        <ng-container i18n>Nothing to do, all done!</ng-container>
-                        }
+                        <ng-template #doneMessage>
+                            <ng-container i18n>Nothing to do, all done!</ng-container>
+                        </ng-template>
+                        <span *appSpinner="isLoading$ | async; idle: doneMessage"></span>
                     </div>
                     }
                 </div>

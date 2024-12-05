@@ -8,6 +8,7 @@ import { provideEffectsManager, provideEffects } from '@ngneat/effects-ng';
 
 import { authInterceptor, offlineInterceptor } from '@app/interceptors';
 import { AuthEffects, TodoEffects } from '@app/effects';
+import { getDevicePlatform, DEVICE_PLATFORM } from '@app/tokens';
 
 import { routes } from './app.routes';
 
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
     provideEffectsManager(),
-    provideEffects(AuthEffects, TodoEffects)
+    provideEffects(AuthEffects, TodoEffects),
+    { provide: DEVICE_PLATFORM, useValue: getDevicePlatform() }
   ]
 };

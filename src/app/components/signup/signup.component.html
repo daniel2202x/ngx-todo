@@ -3,7 +3,8 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
             <div class="card">
                 <div class="card-body">
-                    <form [formGroup]="signupForm" class="d-flex flex-column gap-3 align-items-center p-2">
+                    <form [formGroup]="signupForm" class="d-flex flex-column gap-3 align-items-center p-2"
+                        (ngSubmit)="signup()">
                         <h5 class="card-title fw-bold m-0" i18n>Sign Up</h5>
 
                         <div class="text-center align-self-stretch">
@@ -46,13 +47,13 @@
                         </div>
                         }
 
-                        <button class="btn btn-success btn-lg px-5"
-                            [disabled]="signupForm.invalid || (isLoading$ | async)" (click)="signup()">
-                            <span class="me-2" *appSpinner="!!(isLoading$ | async)"></span>
+                        <button type="submit" class="btn btn-success btn-lg px-5"
+                            [disabled]="signupForm.invalid || (isLoading$ | async)">
+                            <span class="me-2" *appSpinner="isLoading$ | async"></span>
                             <span i18n>Signup</span>
                         </button>
 
-                        <button class="btn btn-link px-5" routerLink="/login" i18n>
+                        <button type="button" class="btn btn-link px-5" routerLink="/login" i18n>
                             Back to login
                         </button>
                     </form>
