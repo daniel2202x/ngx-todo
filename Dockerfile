@@ -14,5 +14,5 @@ COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/cypress/ssl/localhost.crt /etc/nginx/ssl_certificate.crt
 COPY --from=builder /app/cypress/ssl/localhost.key /etc/nginx/ssl_certificate_key.key
 COPY --from=builder /app/dist/ngx-todo/browser /usr/share/nginx/html
-COPY --from=builder /app/app-release-signed.ap[k] /usr/share/nginx/html/ngx-todo-install.apk
+# COPY --from=builder /app/app-release-signed.apk /usr/share/nginx/html/ngx-todo-install.apk
 CMD sed -i "s/PORT_PLACEHOLDER/$PORT/g" /etc/nginx/nginx.conf && nginx -g "daemon off;"
