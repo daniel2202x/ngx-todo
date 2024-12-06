@@ -5,17 +5,16 @@
     "ng": "ng",
     "serve": "ng serve",
     "serve:de": "ng serve --configuration=de",
-    "build": "ng build",
-    "build:capacitor": "ng build --configuration=production,absolute-root-url,include-service-worker && cp index-en-redirect.html dist/ngx-todo/browser/index.html",
+    "build:test": "ng build",
+    "build:prod": "ng build --configuration=production,absolute-root-url,include-service-worker && cp index-en-redirect.html dist/ngx-todo/browser/index.html",
     "lint": "ng lint",
     "extract-i18n": "ng extract-i18n --output-path src/locale",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "docker:kill": "docker rm -f ngx-todo-frontend",
-    "docker:build": "docker build -t ngx-todo-frontend .",
-    "docker:run": "docker run --name ngx-todo-frontend -p 80:80 -p 443:443 ngx-todo-frontend",
-    "docker:serve": "(npm run docker:kill || 0) && npm run docker:build && npm run docker:run"
+    "docker:build": "docker build --build-arg TARGET_ENV=test -t ngx-todo .",
+    "docker:run": "docker run -e PORT=443 -p 443:443 ngx-todo",
+    "docker:serve": "npm run docker:build && npm run docker:run"
   },
   "private": true,
   "dependencies": {

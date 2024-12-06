@@ -13,16 +13,15 @@ The app is available at https://ngx-todo.com and can be used inside any browser 
 3. Run `ng serve` or `npm run serve` to spin up a dev server on `http://localhost:4200`
 
 ## Explanation of scripts in package.json
-- `serve`: Same as `ng serve`, uses the default locale (en)
-- `serve:de`: Same as `npm run serve` but uses the German locale (de)
-- `build`: Builds the app using the default configuration (production). Mainly used for Cypress and testing
-- `build:capacitor`: Builds the app using the configurations `absolute-root-urls` and `include-service-worker`. Only used when the app gets deployed
+- `serve`: Same as `ng serve`, uses the default locale `en`
+- `serve:de`: Same as `npm run serve` but uses the German locale `de`
+- `build:test`: Builds the app using the default configuration `production`
+- `build:prod`: Builds the app using the configurations `production`, `absolute-root-urls` and `include-service-worker`
 - `lint`: Runs the configured linter
 - `extract-i18n`: Builds the app and recreates `src/locale/messages.xlf`. Should always be run after any HTML was touched
 - `e2e`: Same as running `npm run serve` and then `npm run cypress:open`
 - `cypress:open`: Opens the Cypress UI ready for testing
 - `cypress:run`: Runs all Cypress tests in headless mode
-- `docker:kill`: Forcefully removes the ngx-todo-frontend image from the local machine (only used in conjunction with `npm run docker:serve`)
-- `docker:build`: Builds a Docker image that mimics a production build of the app (only used by Cypress and for local testing)
-- `docker:run`: Runs the image built with `npm run docker:build` (also only used by Cypress and for local testing)
-- `docker:serve`: Same as running `docker:kill`, `docker:build` and `docker:run`. Useful for testing a production build locally. Run `npm run build` beforehand. This doesn't include the service worker
+- `docker:build`: Used by Cypress to build a full Docker container for the app. This comes very close to the production version
+- `docker:run`: Also used by Cypress, runs the built Docker container
+- `docker:serve`: Same as running `npm run docker:build` and then `npm run docker:run`

@@ -5,35 +5,8 @@ on:
     types: [released]
 
 jobs:
-  build-web-app:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Install NPM packages
-        run: npm install --force
-
-      - name: Build with version tag
-        run: |
-          echo "{\"build\":\"$(git describe --tags --always)\"}" > src/version.json
-          npm run build:capacitor
-
-      - name: Create arifact folder for upload
-        run: |
-          mkdir artifact
-          cp -r dist artifact
-          
-      - name: Upload dist folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: web-build
-          path: ./artifact
-
   build-android-app:
     runs-on: ubuntu-latest
-    needs: build-web-app
 
     steps:
       - name: Checkout code
@@ -99,19 +72,6 @@ jobs:
     needs: build-android-app
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Download web app dist folder
-        uses: actions/download-artifact@v4
-        with:
-          name: web-build
-        
-      - name: Download APK
-        uses: actions/download-artifact@v4
-        with:
-          name: android-build
-
       - name: Store SSL secrets
         env:
           SSL_CERTIFICATE: ${{ secrets.SSL_CERTIFICATE }}
@@ -119,35 +79,3 @@ jobs:
         run: |
           echo "$SSL_CERTIFICATE" > ssl_certificate.crt
           echo "$SSL_KEY" > ssl_certificate_key.key
-
-      - name: Build Docker image
-        env:
-          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-        run: |
-          versionTag=$(git describe --tags --always)
-          sed -i "s/VERSION_TAG/$versionTag/g" nginx.conf
-          docker build -t $DOCKER_USERNAME/ngx-todo:$versionTag .
-
-      - name: Publish Docker image
-        env:
-          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-        run: |
-          echo $DOCKER_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-          versionTag=$(git describe --tags --always)
-          docker tag $DOCKER_USERNAME/ngx-todo:$versionTag $DOCKER_USERNAME/ngx-todo:latest
-          docker push $DOCKER_USERNAME/ngx-todo:$versionTag
-          docker push $DOCKER_USERNAME/ngx-todo:latest
-        
-      - name: Set up SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ vars.VPS_SSH_IP }} >> ~/.ssh/known_hosts
-
-      - name: Update Docker Service on VPS
-        run: |
-          versionTag=$(git describe --tags --always)
-          ssh root@${{ vars.VPS_SSH_IP }} "docker pull daniel2202x/ngx-todo:$versionTag && docker service update --image daniel2202x/ngx-todo:$versionTag ngx-todo"
