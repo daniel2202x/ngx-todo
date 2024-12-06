@@ -13,7 +13,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "docker:build": "docker build --build-arg TARGET_ENV=test -t ngx-todo .",
-    "docker:run": "docker run -e PORT=443 -p 443:443 ngx-todo",
+    "docker:run": "docker run -e PORT=80 -p 80:80 ngx-todo",
     "docker:serve": "npm run docker:build && npm run docker:run"
   },
   "private": true,
