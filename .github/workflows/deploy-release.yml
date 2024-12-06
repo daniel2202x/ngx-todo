@@ -12,60 +12,60 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+      # - name: Set up JDK
+      #   uses: actions/setup-java@v4
+      #   with:
+      #     java-version: '17'
+      #     distribution: 'temurin'
       
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+      # - name: Setup Android SDK
+      #   uses: android-actions/setup-android@v3
 
-      - name: Install NPM packages
-        run: npm install --force
+      # - name: Install NPM packages
+      #   run: npm install --force
         
-      - name: Download web app dist folder
-        uses: actions/download-artifact@v4
-        with:
-          name: web-build
+      # - name: Download web app dist folder
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: web-build
 
-      - name: Scaffold Android build files
-        run: |
-          npx cap add android
-          npx cap sync android
-          npx capacitor-assets generate
+      # - name: Scaffold Android build files
+      #   run: |
+      #     npx cap add android
+      #     npx cap sync android
+      #     npx capacitor-assets generate
 
-      - name: Set App version
-        run: |
-          cd android
-          versionCode=$(git rev-list --count HEAD)
-          versionName=$(git describe --tags --always)
-          # Capacitor doesn't let us pass in the build version from the outside, so we'll do it the hacky way
-          sed -i "s/versionCode 1/versionCode ${versionCode}/g" app/build.gradle
-          sed -i "s/versionName \"1.0\"/versionName \"$versionName\"/g" app/build.gradle
+      # - name: Set App version
+      #   run: |
+      #     cd android
+      #     versionCode=$(git rev-list --count HEAD)
+      #     versionName=$(git describe --tags --always)
+      #     # Capacitor doesn't let us pass in the build version from the outside, so we'll do it the hacky way
+      #     sed -i "s/versionCode 1/versionCode ${versionCode}/g" app/build.gradle
+      #     sed -i "s/versionName \"1.0\"/versionName \"$versionName\"/g" app/build.gradle
 
-      - name: Decode base64 Keystore secret to file
-        env:
-          ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
-        run: |
-          cd android
-          echo "$ANDROID_KEYSTORE_FILE" | base64 --decode > android-key.keystore
+      # - name: Decode base64 Keystore secret to file
+      #   env:
+      #     ANDROID_KEYSTORE_FILE: ${{ secrets.ANDROID_KEYSTORE_FILE }}
+      #   run: |
+      #     cd android
+      #     echo "$ANDROID_KEYSTORE_FILE" | base64 --decode > android-key.keystore
 
-      - name: Add apksigner to path
-        run: |
-          echo "/usr/local/lib/android/sdk/build-tools/35.0.0" >> $GITHUB_PATH
+      # - name: Add apksigner to path
+      #   run: |
+      #     echo "/usr/local/lib/android/sdk/build-tools/35.0.0" >> $GITHUB_PATH
 
-      - name: Build Android App
-        env:
-          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-        run: |
-          npx cap build --keystorepath android-key.keystore --keystorepass $ANDROID_KEYSTORE_PASSWORD --keystorealias android-key-ngx-todo --keystorealiaspass $ANDROID_KEYSTORE_PASSWORD --androidreleasetype APK android
+      # - name: Build Android App
+      #   env:
+      #     ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      #   run: |
+      #     npx cap build --keystorepath android-key.keystore --keystorepass $ANDROID_KEYSTORE_PASSWORD --keystorealias android-key-ngx-todo --keystorealiaspass $ANDROID_KEYSTORE_PASSWORD --androidreleasetype APK android
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-build
-          path: ./android/app/build/outputs/apk/release/app-release-signed.apk
+      # - name: Upload APK
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: android-build
+      #     path: ./android/app/build/outputs/apk/release/app-release-signed.apk
 
   deploy-to-vps:
     runs-on: ubuntu-latest
