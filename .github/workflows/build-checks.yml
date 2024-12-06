@@ -33,7 +33,7 @@ jobs:
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_BASE_URL: https://localhost/en
+          CYPRESS_BASE_URL: http://localhost/en
         with:
           install-command: npm install --force
           build: npm run docker:build
