@@ -2,14 +2,7 @@
 <p class="bg-warning m-0 p-2 text-center">
     <i class="bi bi-bell-fill me-2"></i><span i18n class="fw-bold">Update available!</span>
     <br>
-    @switch (platform) {
-    @case ('android-app') {
-    <a i18n [href]="rootUrl + '/ngx-todo-install.apk'" target="_blank">Download the update</a>
-    }
-    @default {
     <span *appSpinner="isLoading()"></span>
     <button class="btn btn-link" (click)="updatePWA()" [disabled]="isLoading()" i18n>Update now</button>
-    }
-    }
 </p>
 }

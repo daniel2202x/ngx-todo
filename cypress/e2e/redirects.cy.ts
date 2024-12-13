@@ -13,15 +13,15 @@ describe('App', () => {
         });
     });
 
-    context('gets called on /login', () => {
+    context('gets called on /auth/login', () => {
         it('without idToken and refreshToken', () => {
-            cy.visit('/login');
+            cy.visit('/auth/login');
             cy.url().should('contain', '/login');
         });
 
         it('with valid idToken and valid refreshToken', () => {
             cy.createTestUser();
-            cy.visit('/login');
+            cy.visit('/auth/login');
             cy.url().should('contain', '/todos');
         });
     });

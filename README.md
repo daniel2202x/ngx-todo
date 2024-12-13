@@ -3,9 +3,9 @@
 The only todo app you'll ever need.
 
 [![Lint & Test](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml/badge.svg)](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml)
-[![Deploy Apps](https://github.com/daniel2202x/ngx-todo/actions/workflows/deploy-release.yml/badge.svg)](https://github.com/daniel2202x/ngx-todo/actions/workflows/deploy-release.yml)
+![](./badges/success.svg)
 
-The app is available at https://ngx-todo.com and can be used inside any browser on any platform. On there you will also find an installable version of the app for Android and iOS.
+The app is available at https://ngx-todo.com and can be used inside any browser on any platform.
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`
@@ -16,7 +16,7 @@ The app is available at https://ngx-todo.com and can be used inside any browser 
 - `serve`: Same as `ng serve`, uses the default locale `en`
 - `serve:de`: Same as `npm run serve` but uses the German locale `de`
 - `build:test`: Builds the app using the default configuration `production`
-- `build:prod`: Builds the app using the configurations `production`, `absolute-root-urls` and `include-service-worker`
+- `build:prod`: Builds the app using the configurations `production` and `include-service-worker`
 - `lint`: Runs the configured linter
 - `extract-i18n`: Builds the app and recreates `src/locale/messages.xlf`. Should always be run after any HTML was touched
 - `e2e`: Same as running `npm run serve` and then `npm run cypress:open`

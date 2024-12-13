@@ -77,7 +77,7 @@ describe('Todo handling', () => {
         // create todo manually using the backend
         cy.request({
             method: 'POST',
-            url: `/api/users/${Cypress.env('currentUserUID')}/todos`,
+            url: `/api/data/users/${Cypress.env('currentUserUID')}/todos`,
             headers: { Authorization: `Bearer ${Cypress.env('currentUserIDToken')}` },
             body: { fields: { title: { stringValue: 'My Todo Title' }, content: { stringValue: 'My Todo Content' } } }
         });

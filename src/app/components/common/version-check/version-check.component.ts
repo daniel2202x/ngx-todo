@@ -6,8 +6,7 @@ import { SwUpdate } from '@angular/service-worker';
 import { map } from 'rxjs';
 
 import { Version } from '@app/models';
-import { environment } from '@app/environment';
-import version from '@app/version';
+import localVersion from '@app/version';
 import { SpinnerDirective } from '@app/directives';
 import { DEVICE_PLATFORM } from '@app/tokens';
 
@@ -21,15 +20,13 @@ import { DEVICE_PLATFORM } from '@app/tokens';
 export class VersionCheckComponent {
   readonly platform = inject(DEVICE_PLATFORM)
 
-  readonly rootUrl = environment.rootUrl;
-
   readonly isLoading = signal(false);
 
   private readonly http = inject(HttpClient);
   readonly needsUpdate = toSignal(this.http
-    .get<Version>(environment.rootUrl + '/version')
+    .get<Version>('/version')
     .pipe(
-      map(serverVersion => serverVersion.build !== version.build)
+      map(serverVersion => serverVersion.build !== localVersion.build)
     )
   );
 

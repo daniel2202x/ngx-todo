@@ -7,14 +7,11 @@ import { initEffects } from '@ngneat/effects';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 
-initEffects();
+import { applyMobileFixes } from './mobile-fixes';
 
-// prevent pinch zooming on mobile
-document.addEventListener('touchstart', e => {
-  if (e.touches.length > 1) {
-    e.preventDefault();
-  }
-}, { passive: false });
+applyMobileFixes();
+
+initEffects();
 
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));

@@ -63,14 +63,6 @@
             "include-service-worker": {
               "serviceWorker": "ngsw-config.json"
             },
-            "absolute-root-url": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.absolute-root-url.ts"
-                }
-              ]
-            },
             "de": {
               "localize": [
                 "de"

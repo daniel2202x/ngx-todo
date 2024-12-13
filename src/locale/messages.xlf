@@ -6,86 +6,214 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">7,9</context>
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">4,6</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">36,37</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1897773288834524107" datatype="html">
-        <source>Installing on iOS</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">3,4</context>
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5018804994794983050" datatype="html">
         <source>Signup</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1164760342983392883" datatype="html">
+        <source>Installation on Android</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="542437371069399205" datatype="html">
+        <source>Installation on iOS</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.routes.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4197132578412441083" datatype="html">
         <source>Edit Todo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.routes.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7249991145002416064" datatype="html">
-        <source>Install NGX Todo without the App Store in 3 easy steps:</source>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1431416938026210429" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6861058610387621060" datatype="html">
+        <source> Session expired, please login again </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7369606096264055243" datatype="html">
+        <source> Invalid email or password </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="149974019994124409" datatype="html">
+        <source> Create Account </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/login/login.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1466012768716286509" datatype="html">
+        <source>Sign Up</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2297688463310993102" datatype="html">
+        <source>Your Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4541118533130714111" datatype="html">
+        <source>Repeat Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2768429103403819759" datatype="html">
+        <source>The email already exists</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6887688494282671779" datatype="html">
+        <source>Password should be at least 6 characters</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5856307147839827252" datatype="html">
+        <source> Back to login </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/auth/signup/signup.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6578397717654172779" datatype="html">
+        <source>Page Not Found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/common/not-found/not-found.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3689303851481146368" datatype="html">
+        <source>We couldn&apos;t find that page! Not even with x-ray vision.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/common/not-found/not-found.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5572169381936915463" datatype="html">
+        <source>Update available!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/common/version-check/version-check.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2222955931547347463" datatype="html">
+        <source>Update now</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/common/version-check/version-check.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2425927721648262262" datatype="html">
+        <source>Install NGX Todo without the Play Store in 3 easy steps:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
           <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8602770252201152446" datatype="html">
-        <source>Tap on the share <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/share.jpeg&quot; alt=&quot;&quot;&gt;"/> button</source>
+      <trans-unit id="6912835296836883028" datatype="html">
+        <source>Tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/options.jpeg&quot; alt=&quot;...&quot;&gt;"/> in the top right corner</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2350939973926818382" datatype="html">
-        <source>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add-to-home-screen.jpeg&quot;
-                    alt=&quot;Add to Home Screen&quot;&gt;"/></source>
+        <source>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/install-app.jpeg&quot; alt=&quot;&apos;Install app&apos;&quot;&gt;"/></source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">7,9</context>
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
+          <context context-type="linenumber">7,8</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="9163490927261870610" datatype="html">
-        <source>Tap <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;ios-install/add.jpeg&quot; alt=&quot;Add&quot;&gt;"/> on the top right corner</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">9,10</context>
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3578217639273057874" datatype="html">
         <source>Done, NGX Todo is installed!</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
           <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3588283812733276355" datatype="html">
         <source>If you want to <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>change the language<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> after the app was installed, make sure to uninstall it first and then reinstall it in your desired language.</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
+          <context context-type="linenumber">12,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
           <context context-type="linenumber">12,14</context>
         </context-group>
       </trans-unit>
@@ -93,128 +221,47 @@
         <source> Back to login
 </source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4768749765465246664" datatype="html">
-        <source>Email</source>
+      <trans-unit id="7249991145002416064" datatype="html">
+        <source>Install NGX Todo without the App Store in 3 easy steps:</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">10,11</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1431416938026210429" datatype="html">
-        <source>Password</source>
+      <trans-unit id="8602770252201152446" datatype="html">
+        <source>Tap on the share <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/ios/share.jpeg&quot; alt=&quot;&quot;&gt;"/> button</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6861058610387621060" datatype="html">
-        <source> Session expired, please login again </source>
+      <trans-unit id="9163490927261870610" datatype="html">
+        <source>Tap <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/ios/add.jpeg&quot; alt=&quot;&apos;Add&apos;&quot;&gt;"/> on the top right corner</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7369606096264055243" datatype="html">
-        <source> Invalid email or password </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="149974019994124409" datatype="html">
-        <source> Create Account </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/login/login.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7856887003890131713" datatype="html">
         <source>Hello, <x id="INTERPOLATION" equiv-text="{{displayName$ | async}}"/>!</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/menu/menu.component.html</context>
+          <context context-type="sourcefile">src/app/components/todos/menu/menu.component.html</context>
           <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3797778920049399855" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/menu/menu.component.html</context>
+          <context context-type="sourcefile">src/app/components/todos/menu/menu.component.html</context>
           <context context-type="linenumber">19,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6578397717654172779" datatype="html">
-        <source>Page Not Found</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/not-found/not-found.component.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3689303851481146368" datatype="html">
-        <source>We couldn&apos;t find that page! Not even with x-ray vision.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/not-found/not-found.component.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="313850810538580916" datatype="html">
-        <source>Offline</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/shell/shell.component.html</context>
-          <context context-type="linenumber">20,21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1466012768716286509" datatype="html">
-        <source>Sign Up</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">7,9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2297688463310993102" datatype="html">
-        <source>Your Name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">10,11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4541118533130714111" datatype="html">
-        <source>Repeat Password</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2768429103403819759" datatype="html">
-        <source>The email already exists</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6887688494282671779" datatype="html">
-        <source>Password should be at least 6 characters</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">40</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5856307147839827252" datatype="html">
-        <source> Back to login </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/signup/signup.component.html</context>
-          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2975452180768374915" datatype="html">
@@ -228,7 +275,7 @@
         <source>Nothing to do, all done!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/overview/overview.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8890553633144307762" datatype="html">
@@ -266,25 +313,11 @@
           <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5572169381936915463" datatype="html">
-        <source>Update available!</source>
+      <trans-unit id="313850810538580916" datatype="html">
+        <source>Offline</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2222955931547347463" datatype="html">
-        <source>Update now</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">8,9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3937193324514348190" datatype="html">
-        <source>Download the update</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/version-check/version-check.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="sourcefile">src/app/components/todos/todo-overview-shell/todo-overview-shell.component.html</context>
+          <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
     </body>

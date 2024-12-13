@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 import { getRegistry } from '@ngneat/elf';
 
 import { Credentials, AuthResponse, ProfileLookupResponse, RefreshResponse, SignupCredentials } from '@app/models';
-import { environment } from '@app/environment';
 import { AuthRepository } from '@app/state';
 
-const baseUrl = '/auth';
+const baseUrl = '/api/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class AuthService {
 
   login(credentials: Credentials) {
     return this.http.post<AuthResponse>(
-      environment.rootUrl + baseUrl + '/login',
+      baseUrl + '/login',
       {
         ...credentials,
         returnSecureToken: true
@@ -31,7 +30,7 @@ export class AuthService {
 
   lookupProfile() {
     return this.http.post<ProfileLookupResponse>(
-      environment.rootUrl + baseUrl + '/lookup-profile',
+      baseUrl + '/lookup-profile',
       {
         idToken: this.authRepository.getValue().idToken
       }
@@ -40,7 +39,7 @@ export class AuthService {
 
   signup(credentials: SignupCredentials) {
     return this.http.post<AuthResponse>(
-      environment.rootUrl + baseUrl + '/signup',
+      baseUrl + '/signup',
       {
         ...credentials,
         returnSecureToken: true
@@ -50,7 +49,7 @@ export class AuthService {
 
   updateProfile(displayName: string) {
     return this.http.post(
-      environment.rootUrl + baseUrl + '/update-profile',
+      baseUrl + '/update-profile',
       {
         displayName,
         idToken: this.authRepository.getValue().idToken,
@@ -68,7 +67,7 @@ export class AuthService {
 
   getRefreshToken() {
     return this.http.post<RefreshResponse>(
-      environment.rootUrl + baseUrl + '/refresh',
+      baseUrl + '/refresh',
       {
         grant_type: 'refresh_token',
         refresh_token: this.authRepository.getValue().refreshToken

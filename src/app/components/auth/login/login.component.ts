@@ -6,7 +6,6 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Actions } from '@ngneat/effects-ng';
 
 import { BootstrapValidationDirective, IconComponent, SpinnerDirective } from '@app/directives';
-import { LangauagePickerComponent } from '@app/components';
 import { login } from '@app/actions';
 import { AuthRepository } from '@app/state';
 import { DEVICE_PLATFORM } from '@app/tokens';
@@ -14,7 +13,7 @@ import { DEVICE_PLATFORM } from '@app/tokens';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, BootstrapValidationDirective, SpinnerDirective, RouterLink, LangauagePickerComponent, IconComponent],
+  imports: [ReactiveFormsModule, BootstrapValidationDirective, SpinnerDirective, RouterLink, IconComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

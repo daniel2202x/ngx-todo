@@ -1,7 +1,7 @@
 describe('User', () => {
 
   it('creates account', () => {
-    cy.visit('/signup');
+    cy.visit('/auth/signup');
     cy.getBySel('display-name').type('John');
     cy.getBySel('email').type(`john.doe${Date.now()}@example.com`);
     cy.getBySel('password').type('123456');
@@ -13,7 +13,7 @@ describe('User', () => {
 
   it('creates account with existing email', () => {
     cy.createTestUser(false).then(() => {
-      cy.visit('/signup');
+      cy.visit('/auth/signup');
       cy.getBySel('display-name').type('John');
       cy.getBySel('email').type(Cypress.env('currentUserEmail'));
       cy.getBySel('password').type('123456');

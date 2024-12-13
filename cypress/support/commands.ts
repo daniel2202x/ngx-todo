@@ -36,7 +36,7 @@ Cypress.Commands.add('createTestUser', (fillLocalStorage = true) => {
     Cypress.env('currentUserEmail', email);
     Cypress.env('currentUserPassword', password);
 
-    return cy.request('POST', '/auth/signup',
+    return cy.request('POST', '/api/auth/signup',
         {
             email,
             password,

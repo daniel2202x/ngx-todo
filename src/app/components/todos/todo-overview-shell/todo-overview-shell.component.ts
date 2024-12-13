@@ -13,11 +13,11 @@ import { createTodo } from '@app/actions';
 import { TodoRepository } from '@app/state';
 
 @Component({
-  selector: 'app-shell',
+  selector: 'app-todo-overview-shell',
   standalone: true,
   imports: [RouterOutlet, MenuComponent, IconComponent, SpinnerDirective, AsyncPipe],
-  templateUrl: './shell.component.html',
-  styleUrl: './shell.component.scss',
+  templateUrl: './todo-overview-shell.component.html',
+  styleUrl: './todo-overview-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShellComponent {

@@ -1,7 +1,7 @@
 describe('Language', () => {
 
     it('German gets chosen on login page', () => {
-        cy.visit('/login')
+        cy.visit('/auth/login')
         cy.contains('Login').should('exist');
         cy.getBySel('lang-de').click();
         cy.contains('Anmelden').should('exist');

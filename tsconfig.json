@@ -57,9 +57,6 @@
       "@app/tokens": [
         "./src/app/tokens"
       ],
-      "@app/environment": [
-        "./src/environments/environment"
-      ],
       "@app/version": [
         "./src/version.json"
       ]

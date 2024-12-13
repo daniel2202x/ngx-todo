@@ -4,11 +4,10 @@ import { HttpClient, HttpContext, HttpContextToken } from '@angular/common/http'
 import { map } from 'rxjs';
 
 import { GetManyResponse, GetDocument, Document, Field, isStringField, isIntegerField } from '@app/models';
-import { environment } from '@app/environment';
 
 export const IS_DATABASE_REQUEST = new HttpContextToken(() => false);
 
-const baseUrl = '/api';
+const baseUrl = '/api/data';
 
 @Injectable({
   providedIn: 'root'
@@ -18,21 +17,21 @@ export class ApiService {
   private readonly http = inject(HttpClient);
 
   getOne<T>(uri: string) {
-    return this.http.get<GetDocument>(environment.rootUrl + baseUrl + uri, this.getOptions())
+    return this.http.get<GetDocument>(baseUrl + uri, this.getOptions())
       .pipe(
         map(document => this.documentToObject<T>(document))
       );
   }
 
   getMany<T>(uri: string) {
-    return this.http.get<GetManyResponse>(environment.rootUrl + baseUrl + uri, this.getOptions())
+    return this.http.get<GetManyResponse>(baseUrl + uri, this.getOptions())
       .pipe(
         map(apiRes => apiRes.documents?.map(document => this.documentToObject<T>(document)) || [])
       );
   }
 
   post<T>(uri: string, body: object) {
-    return this.http.post<GetDocument>(environment.rootUrl + baseUrl + uri, this.objectToDocument(body), this.getOptions())
+    return this.http.post<GetDocument>(baseUrl + uri, this.objectToDocument(body), this.getOptions())
       .pipe(
         map(document => this.documentToObject<T>(document))
       );
@@ -41,14 +40,14 @@ export class ApiService {
   patch<T>(uri: string, body: object) {
     // provide updateMask.fieldPaths to Firestore, otherwise all non-mentioned fields would be erased by Firestore
     const updateMask = Object.keys(body).map(field => `updateMask.fieldPaths=${field}`).join('&');
-    return this.http.patch<GetDocument>(`${environment.rootUrl + baseUrl}${uri}?${updateMask}`, this.objectToDocument(body), this.getOptions())
+    return this.http.patch<GetDocument>(`${baseUrl}${uri}?${updateMask}`, this.objectToDocument(body), this.getOptions())
       .pipe(
         map(document => this.documentToObject<T>(document))
       );
   }
 
   delete(uri: string) {
-    return this.http.delete(environment.rootUrl + baseUrl + uri, this.getOptions());
+    return this.http.delete(baseUrl + uri, this.getOptions());
   }
 
   private getOptions() {

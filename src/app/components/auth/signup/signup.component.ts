@@ -8,14 +8,13 @@ import { Actions } from '@ngneat/effects-ng';
 import { filter, map } from 'rxjs';
 
 import { SpinnerDirective, BootstrapValidationDirective } from '@app/directives';
-import { LangauagePickerComponent } from '@app/components';
 import { signup } from '@app/actions';
 import { AuthRepository } from '@app/state';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, SpinnerDirective, RouterLink, LangauagePickerComponent, BootstrapValidationDirective, AsyncPipe],
+  imports: [ReactiveFormsModule, SpinnerDirective, RouterLink, BootstrapValidationDirective, AsyncPipe],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })
