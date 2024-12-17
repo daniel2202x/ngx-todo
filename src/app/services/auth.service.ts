@@ -62,7 +62,7 @@ export class AuthService {
     getRegistry().forEach(store => store.destroy());
 
     const queryParams = sessionExpired ? { sessionExpired: true } : {};
-    this.router.navigate(['/', 'login'], { queryParams });
+    this.router.navigate(['/', 'auth', 'login'], { queryParams });
   }
 
   getRefreshToken() {
