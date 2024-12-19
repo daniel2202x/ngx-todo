@@ -10,7 +10,5 @@ RUN npm run build:$TARGET_ENV
 
 FROM nginx
 COPY --from=builder /app/nginx.conf /etc/nginx/nginx.conf
-# COPY --from=builder /app/cypress/ssl/localhost.crt /etc/nginx/ssl_certificate.crt
-# COPY --from=builder /app/cypress/ssl/localhost.key /etc/nginx/ssl_certificate_key.key
 COPY --from=builder /app/dist/ngx-todo/browser /usr/share/nginx/html
 CMD sed -i "s/PORT_PLACEHOLDER/$PORT/g" /etc/nginx/nginx.conf && nginx -g "daemon off;"

@@ -28,7 +28,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     );
 
     return next(reqWithHeaders()).pipe(catchError(error => {
-      if (error.status === 401) {
+      if (error.status === 401 || error.status === 403) {
         // idToken expired: refresh the token, then proceed as usual
         return refresh$.pipe(switchMap(() => next(reqWithHeaders())));
       }
