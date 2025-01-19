@@ -44,7 +44,7 @@ export const routes: Routes = [
     {
         path: 'todos',
         canActivateChild: [noAuthGuard],
-        loadComponent: () => import('./components/todos/todo-overview-shell/todo-overview-shell.component').then(c => c.ShellComponent),
+        loadComponent: () => import('./components/todos/todo-overview-shell/todo-overview-shell.component').then(c => c.TodoOverviewShellComponent),
         children: [
             {
                 path: '',

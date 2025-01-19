@@ -33,8 +33,8 @@ export class SignupComponent {
   readonly isLoading$ = this.authRepository.signupResult$.pipe(map(res => res.isLoading));
   readonly errorMessage$ = this.authRepository.signupResult$.pipe(
     filter(res => res.isError),
-    map(res => res.error.error.error.message.split(' ')[0])
-  )
+    map(res => res.error.error.error.message.split(' ')[0]) // logic needed to interpret Firebase's weird error response format
+  );
 
   signup() {
     const form = this.signupForm.getRawValue();

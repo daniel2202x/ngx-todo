@@ -8,7 +8,6 @@ import { map } from 'rxjs';
 import { Version } from '@app/models';
 import localVersion from '@app/version';
 import { SpinnerDirective } from '@app/directives';
-import { DEVICE_PLATFORM } from '@app/tokens';
 
 @Component({
   selector: 'app-version-check',
@@ -18,8 +17,6 @@ import { DEVICE_PLATFORM } from '@app/tokens';
   styleUrl: './version-check.component.scss'
 })
 export class VersionCheckComponent {
-  readonly platform = inject(DEVICE_PLATFORM)
-
   readonly isLoading = signal(false);
 
   private readonly http = inject(HttpClient);

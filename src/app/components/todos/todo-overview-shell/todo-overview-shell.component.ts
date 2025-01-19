@@ -20,7 +20,7 @@ import { TodoRepository } from '@app/state';
   styleUrl: './todo-overview-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ShellComponent {
+export class TodoOverviewShellComponent {
   private readonly actions = inject(Actions);
   private readonly todoRepository = inject(TodoRepository);
   readonly offlineService = inject(OfflineService);
