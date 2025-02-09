@@ -22,6 +22,6 @@ The app is available [here](https://ngx-todo.com/en) and can be used inside any 
 - `e2e`: Same as running `npm run serve` and then `npm run cypress:open`
 - `cypress:open`: Opens the Cypress UI ready for testing
 - `cypress:run`: Runs all Cypress tests in headless mode
-- `docker:build`: Used by Cypress to build a full Docker container for the app. This comes very close to a production build
-- `docker:run`: Also used by Cypress, runs the built Docker container
+- `docker:build`: Used by Cypress to build a full Docker image for the app. This comes very close to a production build
+- `docker:run`: Also used by Cypress, runs the built Docker image
 - `docker:serve`: Same as running `npm run docker:build` and then `npm run docker:run`
