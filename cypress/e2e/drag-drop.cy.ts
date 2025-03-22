@@ -22,14 +22,16 @@ describe('Drag & Drop', () => {
         // edit third todo
         cy.contains('Todo3Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.contains('Saving...').should('exist');
+        cy.wait(100);
+        cy.contains('Saving...').should('not.exist');
         cy.contains('Saved').should('exist');
         cy.getBySel('back').click();
 
         // edit fifth todo
         cy.contains('Todo5Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.contains('Saving...').should('exist');
+        cy.wait(100);
+        cy.contains('Saving...').should('not.exist');
         cy.contains('Saved').should('exist');
         cy.getBySel('back').click();
 

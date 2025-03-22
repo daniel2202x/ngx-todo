@@ -82,11 +82,15 @@
             },
             "de": {
               "buildTarget": "ngx-todo:build:development,de"
+            },
+            "fb-prod": {
+              "buildTarget": "ngx-todo:build:development",
+              "proxyConfig": "proxy.conf.prod.mjs"
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "proxy.conf.mjs"
+            "proxyConfig": "proxy.conf.test.mjs"
           }
         },
         "extract-i18n": {

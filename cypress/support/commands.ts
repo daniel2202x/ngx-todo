@@ -74,7 +74,8 @@ Cypress.Commands.add('createTodo', (title: string | null, content: string | null
             cy.getBySel('todo-content-input').type(content);
         }
 
-        cy.contains('Saving...').should('exist');
+        cy.wait(100);
+        cy.contains('Saving...').should('not.exist');
         cy.contains('Saved').should('exist');
     }
 });

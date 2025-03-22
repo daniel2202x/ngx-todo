@@ -11,7 +11,7 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
@@ -24,11 +24,16 @@ jobs:
         run: npm run lint
 
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Launch Firebase emulators
+        run: |
+          npm install -g firebase-tools
+          npm run fb:emulator &
 
       - name: Run Cypress
         uses: cypress-io/github-action@v6

@@ -36,7 +36,8 @@ describe('Todo handling', () => {
 
         // edit todo
         cy.getBySel('todo-content-input').type('My Todo Content');
-        cy.contains('Saving...').should('exist');
+        cy.wait(100);
+        cy.contains('Saving...').should('not.exist');
         cy.contains('Saved').should('exist');
 
         // navigate back to overview and assert

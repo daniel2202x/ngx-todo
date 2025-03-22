@@ -5,6 +5,8 @@
     "ng": "ng",
     "serve": "ng serve",
     "serve:de": "ng serve --configuration=de",
+    "serve:fb-prod": "ng serve --configuration=fb-prod",
+    "fb:emulator": "firebase emulators:start",
     "build:test": "ng build",
     "build:prod": "ng build --configuration=production,include-service-worker",
     "lint": "ng lint",

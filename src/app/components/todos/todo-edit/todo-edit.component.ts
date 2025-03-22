@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
@@ -16,7 +16,7 @@ import { ShellService } from '@app/services';
 @Component({
   selector: 'app-todo-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, IconComponent],
+  imports: [ReactiveFormsModule, IconComponent, RouterLink],
   templateUrl: './todo-edit.component.html',
   styleUrl: './todo-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -27,7 +27,6 @@ export class TodoEditComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   private readonly todoRepository = inject(TodoRepository);
   private readonly actions = inject(Actions);
-  private readonly router = inject(Router);
   private readonly shellService = inject(ShellService);
 
   readonly todoId = input.required<string>();
@@ -81,11 +80,5 @@ export class TodoEditComponent implements OnInit {
         this.pageTitle.setTitle(`Todo: ${todo.title}`);
         this.todoForm.patchValue(todo, { emitEvent: false });
       });
-  }
-
-  goBack() {
-    if (this.saveStatus() !== 'loading') {
-      this.router.navigate(['..']);
-    }
   }
 }
