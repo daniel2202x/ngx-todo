@@ -50,6 +50,7 @@ jobs:
           npm install --force
           npm run docker:build
           npm run docker:run &
+          export CYPRESS_BASE_URL=http://localhost/en
           npm run cypress:run
 
       # - name: Run Cypress
