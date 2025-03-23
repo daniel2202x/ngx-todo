@@ -46,6 +46,8 @@ jobs:
       - name: Install Firebase emulators
         run: npm install -g firebase-tools
 
+      - run: npm run fb:emulator
+
       - name: Run Cypress
         uses: cypress-io/github-action@v6
         env:
