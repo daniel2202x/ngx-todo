@@ -83,7 +83,7 @@
             "de": {
               "buildTarget": "ngx-todo:build:development,de"
             },
-            "fb-prod": {
+            "development-prod": {
               "buildTarget": "ngx-todo:build:development",
               "proxyConfig": "proxy.conf.prod.mjs"
             }

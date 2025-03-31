@@ -15,4 +15,4 @@ FROM nginx:1.27
 ARG TARGET_ENV=prod
 COPY --from=builder /app/nginx.$TARGET_ENV.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist/ngx-todo/browser /usr/share/nginx/html
-CMD sed -i "s/PORT_PLACEHOLDER/$PORT/g" /etc/nginx/nginx.conf && nginx -g "daemon off;"
+CMD sed -i "s/PORT_PLACEHOLDER/$PORT/g" /etc/nginx/nginx.conf && nginx

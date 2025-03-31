@@ -38,28 +38,5 @@ jobs:
         with:
           node-version: 22
 
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Run Tests
-        run: |
-          npm install -g firebase-tools
-          firebase emulators:start &
-          npm install --force
-          npm run docker:build
-          npm run docker:run &
-          export CYPRESS_BASE_URL=http://localhost/en
-          npm run cypress:run
-
-      # - name: Run Cypress
-      #   uses: cypress-io/github-action@v6
-      #   env:
-      #     CYPRESS_BASE_URL: http://localhost/en
-      #   with:
-      #     install-command: npm install --force
-      #     build: npm run docker:build
-      #     start: |
-      #       npm run fb:emulator &
-      #       npm run docker:run
+      - name: Run Cypress tests
+        run: npm run cypress:docker

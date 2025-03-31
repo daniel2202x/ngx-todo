@@ -1,0 +1,48 @@
+services:
+  firebase-emulator:
+    image: eclipse-temurin:21
+    container_name: firebase-emulator
+    entrypoint: bash -c "curl -sL https://firebase.tools | bash && firebase emulators:start"
+    working_dir: /app
+    ports:
+      - 4000:4000 # UI
+      - 9099:9099 # Auth
+      - 8080:8080 # Firestore
+    volumes:
+      - ./:/app
+    healthcheck:
+      test: curl -f http://127.0.0.1:4000 || exit 1
+      retries: 30
+
+  ngx-todo:
+    container_name: ngx-todo
+    build:
+      context: .
+      args:
+        - TAG_NAME=1.0.0-test
+        - TARGET_ENV=test
+    profiles:
+      - cypress
+    environment:
+      - PORT=80
+    ports:
+      - 80:80
+    healthcheck:
+      test: curl -f 127.0.0.1 || exit 1
+    depends_on:
+      firebase-emulator:
+        condition: service_healthy
+
+  cypress:
+    image: cypress/included:14.2.0
+    container_name: cypress
+    profiles:
+      - cypress
+    environment:
+      - CYPRESS_BASE_URL=http://ngx-todo/en
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      ngx-todo:
+        condition: service_healthy

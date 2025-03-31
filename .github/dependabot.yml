@@ -8,8 +8,8 @@ updates:
       node-dependencies:
         patterns:
           - '*'
-    ignore:
-      - dependency-name: 'typescript'
+    # ignore:
+    #   - dependency-name: 'typescript'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
@@ -17,6 +17,11 @@ updates:
       interval: 'monthly'
 
   - package-ecosystem: 'docker'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+
+  - package-ecosystem: 'docker-compose'
     directory: '/'
     schedule:
       interval: 'monthly'

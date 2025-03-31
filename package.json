@@ -5,7 +5,7 @@
     "ng": "ng",
     "serve": "ng serve",
     "serve:de": "ng serve --configuration=de",
-    "serve:fb-prod": "ng serve --configuration=fb-prod",
+    "serve:prod": "ng serve --configuration=development-prod",
     "build:test": "ng build",
     "build:prod": "ng build --configuration=production,include-service-worker",
     "lint": "ng lint",
@@ -13,9 +13,8 @@
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "docker:build": "docker build --build-arg TAG_NAME=1.0.0-test --build-arg TARGET_ENV=test -t ngx-todo .",
-    "docker:run": "docker run -e PORT=80 -p 80:80 --add-host=host.docker.internal:host-gateway ngx-todo",
-    "docker:serve": "npm run docker:build && npm run docker:run"
+    "cypress:docker": "docker compose -f docker-compose.test.yml --profile cypress up --build --abort-on-container-exit",
+    "firebase:emulator": "docker compose -f docker-compose.test.yml up"
   },
   "private": true,
   "dependencies": {
