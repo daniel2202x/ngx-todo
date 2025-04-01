@@ -22,6 +22,7 @@ services:
         - TAG_NAME=1.0.0-test
         - TARGET_ENV=test
     profiles:
+      - test
       - cypress
     environment:
       - PORT=80
@@ -40,7 +41,6 @@ services:
       - cypress
     environment:
       - CYPRESS_BASE_URL=http://ngx-todo/en
-    entrypoint: bash -c "npm install --force && cypress run"
     working_dir: /app
     volumes:
       - ./:/app

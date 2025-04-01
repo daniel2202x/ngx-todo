@@ -14,7 +14,8 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "cypress:docker": "docker compose -f docker-compose.test.yml --profile cypress up --build --abort-on-container-exit",
-    "firebase:emulator": "docker compose -f docker-compose.test.yml up"
+    "firebase:emulator": "docker compose -f docker-compose.test.yml up",
+    "docker:serve": "docker compose -f docker-compose.test.yml --profile test up --build"
   },
   "private": true,
   "dependencies": {

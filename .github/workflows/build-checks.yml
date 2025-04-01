@@ -38,5 +38,8 @@ jobs:
         with:
           node-version: 22
 
+      - name: Install NPM packages
+        run: npm install --force
+
       - name: Run Cypress tests
         run: npm run cypress:docker

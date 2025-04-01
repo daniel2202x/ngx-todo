@@ -198,24 +198,20 @@
           <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6912835296836883028" datatype="html">
-        <source>Tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/options.jpeg&quot; alt=&quot;...&quot;&gt;"/> in the top right corner</source>
-        <target>Tippe oben rechts auf <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/options.jpeg&quot; alt=&quot;...&quot;&gt;"/></target>
+      <trans-unit id="6343578434973107901" datatype="html">
+        <source>Open the options menu in this browser</source>
+        <target>Öffne das Options-Menü in diesem Browser</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2350939973926818382" datatype="html">
-        <source>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/install-app.jpeg&quot; alt=&quot;&apos;Install app&apos;&quot;&gt;"/></source>
-        <target>Scrolle ein bisschen runter und tippe auf <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/android/install-app.jpeg&quot; alt=&quot;&apos;Install app&apos;&quot;&gt;"/></target>
+      <trans-unit id="6831653415599764765" datatype="html">
+        <source>Tap on <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Add to homescreen<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></source>
+        <target>Tippe auf <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>Zum Startbildschirm hinzufügen<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
           <context context-type="linenumber">7,8</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
-          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3578217639273057874" datatype="html">
@@ -223,7 +219,7 @@
         <target>Fertig, NGX Todo ist installiert!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
-          <context context-type="linenumber">10,11</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
@@ -235,7 +231,7 @@
         <target>Wenn du <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>die Sprache ändern<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> willst, nachdem du die App installiert hast, deinstalliere sie bitte zunächst und installiere sie erneut in der gewünschten Sprache.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
-          <context context-type="linenumber">12,14</context>
+          <context context-type="linenumber">11,13</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
@@ -249,7 +245,7 @@
 </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/android-install-instructions/android-install-instructions.component.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
@@ -270,6 +266,16 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
           <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2350939973926818382" datatype="html">
+        <source>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/ios/add-to-home-screen.jpeg&quot;
+                    alt=&quot;&apos;Add to Home Screen&apos;&quot;&gt;"/></source>
+        <target>Scroll down a little and tap on <x id="TAG_IMG" ctype="image" equiv-text="&lt;img src=&quot;install/ios/add-to-home-screen.jpeg&quot;
+                    alt=&quot;&apos;Add to Home Screen&apos;&quot;&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/install/ios-install-instructions/ios-install-instructions.component.html</context>
+          <context context-type="linenumber">7,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9163490927261870610" datatype="html">

@@ -6,13 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MultiLineAbbreviationPipe implements PipeTransform {
 
-  transform(value: unknown): unknown {
-    if (typeof value === 'string') {
+  transform(value: string, multilines = 1): string {
       const lines = value.split('\n');
-      if (lines.length > 1) {
-        return lines[0] + '...';
+      if (lines.length > multilines) {
+        console.log(value, lines)
+        return lines.slice(0, 5).join('\n') + '...';
       }
-    }
 
     return value;
   }
