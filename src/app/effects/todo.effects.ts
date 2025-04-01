@@ -36,6 +36,7 @@ export class TodoEffects {
 
     readonly updateTodo$ = createEffect(actions => actions.pipe(
         ofType(updateTodo),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         switchMap(({ type, id, ...todo }) => this.todoService.patchTodo(id, todo).pipe(
             tap(updatedTodo => this.todoRepository.updateTodo(updatedTodo.id, updatedTodo)),
             trackRequestResult(['patch-todo', id], { skipCache: true })

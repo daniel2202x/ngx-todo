@@ -49,14 +49,12 @@ export const routes: Routes = [
             {
                 path: '',
                 title: 'NGX Todo',
-                loadComponent: () => import('./components/todos/overview/overview.component').then(c => c.OverviewComponent),
-                children: [
-                    {
-                        path: ':todoId',
-                        title: $localize`Edit Todo`,
-                        loadComponent: () => import('./components/todos/todo-edit/todo-edit.component').then(c => c.TodoEditComponent)
-                    }
-                ]
+                loadComponent: () => import('./components/todos/overview/overview.component').then(c => c.OverviewComponent)
+            },
+            {
+                path: ':todoId',
+                title: $localize`Edit Todo`,
+                loadComponent: () => import('./components/todos/todo-edit/todo-edit.component').then(c => c.TodoEditComponent)
             }
         ]
     },

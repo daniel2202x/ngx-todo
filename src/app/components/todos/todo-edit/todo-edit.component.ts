@@ -12,11 +12,12 @@ import { IconComponent } from '@app/directives';
 import { TodoRepository } from '@app/state';
 import { updateTodo } from '@app/actions';
 import { ShellService } from '@app/services';
+import { OverviewComponent } from '@app/components';
 
 @Component({
   selector: 'app-todo-edit',
   standalone: true,
-  imports: [ReactiveFormsModule, IconComponent, RouterLink],
+  imports: [ReactiveFormsModule, IconComponent, RouterLink, OverviewComponent],
   templateUrl: './todo-edit.component.html',
   styleUrl: './todo-edit.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

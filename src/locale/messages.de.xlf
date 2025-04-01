@@ -301,7 +301,7 @@
         <target>Überall suchen...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/overview/overview.component.html</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9145884654397180658" datatype="html">
@@ -309,7 +309,7 @@
         <target>Nichts zu tun, alles erledigt!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/overview/overview.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8890553633144307762" datatype="html">
@@ -317,7 +317,7 @@
         <target>Zurück</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">4,5</context>
+          <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3407061818321766940" datatype="html">
@@ -325,7 +325,7 @@
         <target>Sichern...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">9,10</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6333335057236774263" datatype="html">
@@ -333,7 +333,7 @@
         <target>Gesichert</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">12,13</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8693414454705808287" datatype="html">
@@ -341,7 +341,7 @@
         <target>Titel...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="linenumber">27,28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="665870996015497421" datatype="html">
@@ -349,7 +349,7 @@
         <target>Inhalt...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/todos/todo-edit/todo-edit.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="313850810538580916" datatype="html">

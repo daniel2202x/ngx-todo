@@ -1,4 +1,4 @@
-import { Directive, HostBinding, inject } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import { FormControlName, FormGroupDirective } from '@angular/forms';
 
 @Directive({

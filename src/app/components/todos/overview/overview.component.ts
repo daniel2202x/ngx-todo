@@ -4,10 +4,9 @@ import { AsyncPipe } from '@angular/common';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
-import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { BreakpointObserver } from '@angular/cdk/layout';
+import { RouterOutlet } from '@angular/router';
 
-import { filter, map, merge, of, Subject, switchMap } from 'rxjs';
+import { map, Subject, switchMap } from 'rxjs';
 
 import { Actions } from '@ngneat/effects-ng';
 
@@ -37,7 +36,6 @@ export class OverviewComponent implements OnInit {
 
   private readonly todoRepository = inject(TodoRepository);
   private readonly actions = inject(Actions);
-  private readonly router = inject(Router);
 
   readonly todosReversed$ = this.todoRepository.allTodos$.pipe(map(todos => todos.slice().sort((a, b) => b.position - a.position)));
 
@@ -52,16 +50,6 @@ export class OverviewComponent implements OnInit {
     switchMap(todoId => this.todoRepository.getPositionUpdateResult$().pipe(
       map(({ isLoading }) => isLoading ? todoId : null)
     ))
-  );
-
-  // handling views on different routes based on screen size involves observing both the screen width and where the navigation currently is
-  readonly isLargeScreen$ = inject(BreakpointObserver).observe('(min-width: 768px)').pipe(map(result => result.matches));
-  readonly isOnOverviewPage$ = merge( // has to be set both initially and everytime the router navigates
-    of(this.router.url.endsWith('todos')),
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      map(event => event.url.endsWith('todos'))
-    )
   );
 
   ngOnInit(): void {

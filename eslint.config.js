@@ -29,7 +29,6 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
-      "@typescript-eslint/no-unused-vars": "off"
     },
   },
   {
@@ -38,8 +37,5 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {
-      "@angular-eslint/template/elements-content": "off"
-    },
   }
 );
