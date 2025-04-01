@@ -34,7 +34,7 @@ services:
         condition: service_healthy
 
   cypress:
-    image: cypress/included:14.2.0
+    image: cypress/included:14.2.1
     container_name: cypress
     profiles:
       - cypress
