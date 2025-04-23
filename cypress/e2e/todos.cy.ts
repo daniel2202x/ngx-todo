@@ -8,7 +8,7 @@ describe('Todo handling', () => {
         cy.visit('/todos');
 
         cy.createTodo('My Todo Title', 'My Todo Content');
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.contains('My Todo Title').should('exist');
         cy.contains('My Todo Content').should('exist');
         cy.contains('...').should('not.exist');
@@ -17,10 +17,10 @@ describe('Todo handling', () => {
     it('creates multi line todo', () => {
         cy.visit('/todos');
 
-        cy.createTodo('My Todo Title', 'My Todo Content{enter}My Todo Line 2');
-        cy.getBySel('back').click();
+        cy.createTodo('My Todo Title', 'Line 1{enter}Line 2{enter}Line 3{enter}Line 4{enter}Line 5{enter}Line 6');
+        cy.goBackToOverview();
         cy.contains('My Todo Title').should('exist');
-        cy.contains('My Todo Content...').should('exist');
+        cy.contains('Line 5...').should('exist');
     });
 
     it('edits todo', () => {
@@ -30,18 +30,16 @@ describe('Todo handling', () => {
         cy.createTodo('My Todo Title', null);
 
         // navigate back to overview and open again
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.contains('My Todo Title').should('exist');
         cy.contains('My Todo Title').click();
 
         // edit todo
         cy.getBySel('todo-content-input').type('My Todo Content');
-        cy.wait(100);
-        cy.contains('Saving...').should('not.exist');
-        cy.contains('Saved').should('exist');
+        cy.waitUntilTodoSaved();
 
         // navigate back to overview and assert
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.contains('My Todo Title').should('exist');
         cy.contains('My Todo Content').should('exist');
 
@@ -58,7 +56,7 @@ describe('Todo handling', () => {
         cy.createTodo('My Todo Title', 'My Todo Content');
 
         // navigate back to overview and check for existence
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.contains('My Todo Title').should('exist');
         cy.contains('My Todo Content').should('exist');
 

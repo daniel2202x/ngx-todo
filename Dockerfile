@@ -1,4 +1,4 @@
-FROM node:22 AS builder
+FROM node:22.14.0 AS builder
 ARG TAG_NAME
 ARG TARGET_ENV=prod
 WORKDIR /app
@@ -11,7 +11,7 @@ RUN echo "{\"build\":\"$TAG_NAME\"}" > src/version.json
 RUN npm install --force
 RUN npm run build:$TARGET_ENV
 
-FROM nginx:1.27
+FROM nginx:1.26.3
 ARG TARGET_ENV=prod
 COPY --from=builder /app/nginx.$TARGET_ENV.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist/ngx-todo/browser /usr/share/nginx/html

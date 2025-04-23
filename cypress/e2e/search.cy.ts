@@ -18,7 +18,7 @@ describe('Full text search', () => {
         cy.createTodo('Test', 'Test4567');
 
         // navigate back to overview and assert that all todos exist
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.getBySel('todo-title', 'todo-content').containsTimes('Test123', 4);
         cy.getBySel('todo-title', 'todo-content').containsTimes('Test1234', 2);
         cy.getBySel('todo-title', 'todo-content').containsTimes('Test456', 4);

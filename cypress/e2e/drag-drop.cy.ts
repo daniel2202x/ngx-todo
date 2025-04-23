@@ -15,25 +15,21 @@ describe('Drag & Drop', () => {
         cy.createTodo('Todo5Title', 'Todo5Content');
 
         // navigate back to overview and assert order
-        cy.getBySel('back').click();
+        cy.goBackToOverview();
         cy.getBySel('todo-title').invoke('text').should('eq', 'Todo5TitleTodo4TitleTodo3TitleTodo2TitleTodo1Title');
         cy.getBySel('todo-content').invoke('text').should('eq', ' Todo5Content  Todo4Content  Todo3Content  Todo2Content  Todo1Content ');
 
         // edit third todo
         cy.contains('Todo3Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.wait(100);
-        cy.contains('Saving...').should('not.exist');
-        cy.contains('Saved').should('exist');
-        cy.getBySel('back').click();
+        cy.waitUntilTodoSaved();
+        cy.goBackToOverview();
 
         // edit fifth todo
         cy.contains('Todo5Title').click();
         cy.getBySel('todo-content-input').type('Edited');
-        cy.wait(100);
-        cy.contains('Saving...').should('not.exist');
-        cy.contains('Saved').should('exist');
-        cy.getBySel('back').click();
+        cy.waitUntilTodoSaved();
+        cy.goBackToOverview();
 
         // assert order
         cy.getBySel('todo-title').invoke('text').should('eq', 'Todo5TitleTodo4TitleTodo3TitleTodo2TitleTodo1Title');

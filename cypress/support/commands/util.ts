@@ -7,6 +7,7 @@ declare global {
         interface Chainable {
             getBySel(...selectors: string[]): Chainable<JQuery<Node>>;
             containsTimes(str: string, times: number): Chainable<any>;
+            goBackToOverview(): Chainable<any>;
         }
     }
 }
@@ -23,4 +24,11 @@ Cypress.Commands.add('containsTimes', { prevSubject: 'element' }, (subject: JQue
             const matches = (text.match(new RegExp(str, 'g')) || []).length;
             expect(matches).to.equal(times);
         });
+});
+
+Cypress.Commands.add('goBackToOverview', () => {
+    cy.intercept('GET', '/api/data/users/*/todos').as('fetchTodos');
+    cy.getBySel('back').click();
+    cy.wait('@fetchTodos');
+    // cy.url().should('satisfy', url => url.endsWith('todos'));
 });

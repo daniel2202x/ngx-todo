@@ -6,6 +6,7 @@ declare global {
     namespace Cypress {
         interface Chainable {
             createTodo(title: string | null, content: string | null): Chainable<any>;
+            waitUntilTodoSaved(): Chainable<any>;
         }
     }
 }
@@ -23,8 +24,12 @@ Cypress.Commands.add('createTodo', (title: string | null, content: string | null
             cy.getBySel('todo-content-input').type(content);
         }
 
-        cy.wait(100);
-        cy.contains('Saving...').should('not.exist');
-        cy.contains('Saved').should('exist');
+        cy.waitUntilTodoSaved();
     }
+});
+
+Cypress.Commands.add('waitUntilTodoSaved', () => {
+    cy.wait(300); // debounceTime(200)
+    cy.contains('Saving...').should('not.exist');
+    cy.contains('Saved').should('exist');
 });
