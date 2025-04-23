@@ -1,8 +1,8 @@
 services:
   firebase-emulator:
-    image: eclipse-temurin:21
+    image: eclipse-temurin:21.0.6_7-jre
     container_name: firebase-emulator
-    entrypoint: bash -c "curl -sL https://firebase.tools | bash && firebase emulators:start"
+    entrypoint: bash -c "curl -Lo /firebase_tools https://firebase.tools/bin/linux/v14.2.0 && chmod +x /firebase_tools && /firebase_tools emulators:start"
     working_dir: /app
     ports:
       - 4000:4000 # UI
