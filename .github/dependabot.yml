@@ -7,9 +7,23 @@ updates:
     groups:
       angular-dependencies:
         patterns:
-          - '*'
-    # ignore:
-    #   - dependency-name: 'typescript'
+          - '@angular*'
+          - '@cypress/schematic'
+          - 'rxjs'
+          - 'tslib'
+          - 'zone.js'
+          - '@types/jasmine'
+          - 'jasmine-core'
+          - 'karma*'
+          - 'typescript'
+      ngneat-dependencies:
+        patterns:
+          - '@ngneat*'
+      eslint-dependencies:
+        patterns:
+          - 'angular-eslint'
+          - 'eslint'
+          - 'typescript-eslint'
 
   - package-ecosystem: 'github-actions'
     directory: '/'

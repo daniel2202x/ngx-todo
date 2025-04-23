@@ -5,7 +5,7 @@ The only todo app you'll ever need.
 [![Lint & Test](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml/badge.svg)](https://github.com/daniel2202x/ngx-todo/actions/workflows/build-checks.yml)
 ![](./badges/success.svg)
 
-The app is available [here](https://ngx-todo.com/en) and can be used inside any browser on any platform.
+The app is available [here](https://ngx-todo.com) and can be used inside any browser on any platform.
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`
