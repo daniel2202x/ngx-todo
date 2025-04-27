@@ -19,6 +19,10 @@ updates:
       ngneat-dependencies:
         patterns:
           - '@ngneat*'
+      css-dependencies:
+        patterns:
+          - 'bootstrap*'
+          - 'flag-icons'
       eslint-dependencies:
         patterns:
           - 'angular-eslint'
