@@ -38,14 +38,14 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
-    ignore:
+    allow:
       - dependency-name: 'node'
-        versions: ['~> 23']
+        versions: ['~> 22']
 
   - package-ecosystem: 'docker-compose'
     directory: '/'
     schedule:
       interval: 'daily'
-    ignore:
+    allow:
       - dependency-name: 'eclipse-temurin'
-        versions: ['~> 22']
+        versions: ['~> 21']
