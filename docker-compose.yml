@@ -1,7 +1,8 @@
 services:
   firebase-emulator:
     image: eclipse-temurin:21.0.6_7-jre
-    container_name: firebase-emulator
+    container_name: $COMPOSE_PROJECT_NAME-firebase-emulator
+    hostname: firebase-emulator
     entrypoint: bash -c "curl -Lo /firebase_tools https://firebase.tools/bin/linux/v14.2.0 && chmod +x /firebase_tools && /firebase_tools emulators:start"
     working_dir: /app
     ports:
@@ -15,7 +16,8 @@ services:
       retries: 30
 
   ngx-todo:
-    container_name: ngx-todo
+    container_name: $COMPOSE_PROJECT_NAME-ngx-todo
+    hostname: ngx-todo
     build:
       context: .
       args:
@@ -36,7 +38,7 @@ services:
 
   cypress:
     image: cypress/included:13.17.0
-    container_name: cypress
+    container_name: $COMPOSE_PROJECT_NAME-cypress
     profiles:
       - cypress
     environment:
