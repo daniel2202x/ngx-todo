@@ -30,5 +30,4 @@ Cypress.Commands.add('goBackToOverview', () => {
     cy.intercept('GET', '/api/data/users/*/todos').as('fetchTodos');
     cy.getBySel('back').click();
     cy.wait('@fetchTodos');
-    // cy.url().should('satisfy', url => url.endsWith('todos'));
 });
