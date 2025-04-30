@@ -18,7 +18,7 @@ jobs:
           node-version: 22
 
       - name: Install NPM packages
-        run: npm install --force
+        run: npm install
 
       - name: Lint
         run: npm run lint
