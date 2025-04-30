@@ -8,7 +8,7 @@ RUN sed -i "s/TAG_NAME/$TAG_NAME/g" nginx.$TARGET_ENV.conf
 # set version client side
 RUN echo "{\"build\":\"$TAG_NAME\"}" > src/version.json
 # build the app
-RUN npm install --force
+RUN npm install
 RUN npm run build:$TARGET_ENV
 
 FROM nginx:1.27.5
