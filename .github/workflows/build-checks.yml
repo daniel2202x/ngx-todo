@@ -1,10 +1,8 @@
 name: Lint & Test
-
-on:
-  push:
+on: push
 
 jobs:
-  lint:
+  lint-test:
     runs-on: ubuntu-22.04
 
     steps:
@@ -16,24 +14,10 @@ jobs:
           node-version: 22
 
       - name: Install NPM packages
-        run: npm install --force
+        run: npm install
 
       - name: Lint
         run: npm run lint
-
-  test:
-    runs-on: ubuntu-22.04
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-
-      - name: Install NPM packages
-        run: npm install --force
 
       - name: Run Cypress tests
         run: npm run cypress:docker
