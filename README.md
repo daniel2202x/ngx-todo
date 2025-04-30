@@ -9,7 +9,7 @@ The app is available [here](https://ngx-todo.com) and can be used inside any bro
 
 ## Basic Setup
 1. Clone the repository with `git clone https://github.com/daniel2202x/ngx-todo`
-2. Run `npm install --force` (the Angular PWA package, unfortunately, cannot install without `--force`)
+2. Run `npm install`
 3. Run `npm run firebase:emulator` to launch the Firebase emulator
 4. Run `ng serve` or `npm run serve` to spin up a dev server on `http://localhost:4200`
 
