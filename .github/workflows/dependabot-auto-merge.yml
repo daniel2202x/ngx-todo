@@ -20,6 +20,9 @@ jobs:
       - name: Install NPM packages
         run: npm install --force
 
+      - name: Lint
+        run: npm run lint
+
       - name: Run Cypress tests
         run: npm run cypress:docker
       
