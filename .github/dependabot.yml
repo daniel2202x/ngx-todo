@@ -46,3 +46,6 @@ updates:
     directory: '/'
     schedule:
       interval: 'daily'
+    ignore:
+      - dependency-name: 'eclipse-temurin'
+        versions: ['~> 22']
