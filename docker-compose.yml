@@ -1,6 +1,6 @@
 services:
   firebase-emulator:
-    image: eclipse-temurin:21.0.6_7-jre
+    image: eclipse-temurin:21.0.7_6-jre
     container_name: $COMPOSE_PROJECT_NAME-firebase-emulator
     hostname: firebase-emulator
     entrypoint: bash -c "curl -Lo /firebase_tools https://firebase.tools/bin/linux/v14.2.0 && chmod +x /firebase_tools && /firebase_tools emulators:start"
