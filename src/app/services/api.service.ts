@@ -85,6 +85,7 @@ export class ApiService {
   private objectToDocument(body: object): Document {
     const fields = Object.keys(body).reduce((obj, key) => ({
       ...obj,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       [key]: this.createTypedField((body as any)[key])
     }), {});
 
