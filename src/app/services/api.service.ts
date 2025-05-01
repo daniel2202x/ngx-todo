@@ -85,7 +85,6 @@ export class ApiService {
   private objectToDocument(body: object): Document {
     const fields = Object.keys(body).reduce((obj, key) => ({
       ...obj,
-      // @ts-expect-error we know key is in body since we're iterating over the keys of body in reduce
       [key]: this.createTypedField(body[key])
     }), {});
 
