@@ -85,7 +85,7 @@ export class ApiService {
   private objectToDocument(body: object): Document {
     const fields = Object.keys(body).reduce((obj, key) => ({
       ...obj,
-      [key]: this.createTypedField(body[key])
+      [key]: this.createTypedField((body as any)[key])
     }), {});
 
     return { fields };
