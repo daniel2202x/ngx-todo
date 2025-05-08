@@ -40,7 +40,7 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-name: 'node'
-        versions: ['~> 23']
+        versions: ['~> 25']
 
   - package-ecosystem: 'docker-compose'
     directory: '/'
