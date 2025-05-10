@@ -41,7 +41,7 @@
 
 <div class="d-flex justify-content-center gap-3 mt-3">
     @if (devicePlatform === 'desktop-web' || devicePlatform === 'android-web') {
-    <a routerLink="/install/android" app-icon="android" app-icon-colour="dark" app-icon-size="lg"
+    <a routerLink="/install/android" appIcon="android" appIconColour="dark" appIconSize="lg"
         class="btn-market d-flex align-items-center gap-2">
         <span class="d-flex flex-column align-items-start">
             <small class="lh-1">GET IT FOR</small>
@@ -50,7 +50,7 @@
     </a>
     }
     @if (devicePlatform === 'desktop-web' || devicePlatform === 'ios-web') {
-    <a routerLink="/install/ios" app-icon="apple" app-icon-colour="dark" app-icon-size="lg"
+    <a routerLink="/install/ios" appIcon="apple" appIconColour="dark" appIconSize="lg"
         class="btn-market d-flex align-items-center gap-2">
         <span class="d-flex flex-column align-items-start">
             <small class="lh-1">Download for</small>
