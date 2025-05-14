@@ -7,11 +7,11 @@
         <span class="card-text d-inline-flex align-items-center" data-cy="todo-content">
             {{ todo().content | multiLineAbbreviation:5 }}
         </span>
-        <button app-icon="pen" app-icon-colour="primary" app-icon-size="sm" class="justify-self-end"> </button>
+        <button appIcon="pen" appIconColour="primary" appIconSize="sm" class="justify-self-end"> </button>
         <span class="align-self-start">
             <span *appSpinner="isDeleting()" class="me-1"></span>
-            <button data-cy="delete-todo" (click)="deleteTodo($event)" [disabled]="isDeleting()" app-icon="trash"
-                app-icon-colour="danger" app-icon-size="sm">
+            <button data-cy="delete-todo" (click)="deleteTodo($event)" [disabled]="isDeleting()" appIcon="trash"
+                appIconColour="danger" appIconSize="sm">
             </button>
         </span>
     </div>

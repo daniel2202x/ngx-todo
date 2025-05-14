@@ -11,6 +11,8 @@ export class SpinnerDirective implements OnChanges {
   private readonly renderer = inject(Renderer2);
 
   readonly loading = input.required<boolean | null | undefined>({ alias: 'appSpinner' });
+  // Angular stops working if we don't use an alias
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly idleTemplateRef = input<TemplateRef<Element> | null>(null, { alias: 'appSpinnerIdle' })
 
   ngOnChanges(changes: SimpleChanges): void {

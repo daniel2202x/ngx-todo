@@ -15,9 +15,9 @@ services:
       test: curl -f http://127.0.0.1:4000 || exit 1
       retries: 30
 
-  ngx-todo:
-    container_name: $COMPOSE_PROJECT_NAME-ngx-todo
-    hostname: ngx-todo
+  frontend:
+    container_name: $COMPOSE_PROJECT_NAME-frontend
+    hostname: frontend
     build:
       context: .
       args:
@@ -29,7 +29,7 @@ services:
     environment:
       - PORT=80
     ports:
-      - 80:80
+      - 4200:80
     healthcheck:
       test: curl -f 127.0.0.1 || exit 1
     depends_on:
@@ -42,10 +42,10 @@ services:
     profiles:
       - cypress
     environment:
-      - CYPRESS_BASE_URL=http://ngx-todo/en
+      - CYPRESS_BASE_URL=http://frontend/en
     working_dir: /app
     volumes:
       - ./:/app
     depends_on:
-      ngx-todo:
+      frontend:
         condition: service_healthy
