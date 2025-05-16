@@ -13,7 +13,6 @@ services:
       - ./:/app
     healthcheck:
       test: curl -f http://127.0.0.1:4000 || exit 1
-      retries: 30
 
   frontend:
     container_name: $COMPOSE_PROJECT_NAME-frontend
@@ -21,13 +20,13 @@ services:
     build:
       context: .
       args:
-        - TAG_NAME=1.0.0-test
-        - TARGET_ENV=test
+        TAG_NAME: 1.0.0-test
+        TARGET_ENV: test
     profiles:
       - test
       - cypress
     environment:
-      - PORT=80
+      PORT: 80
     ports:
       - 4200:80
     healthcheck:
@@ -42,7 +41,7 @@ services:
     profiles:
       - cypress
     environment:
-      - CYPRESS_BASE_URL=http://frontend/en
+      CYPRESS_BASE_URL: http://frontend/en
     working_dir: /app
     volumes:
       - ./:/app
