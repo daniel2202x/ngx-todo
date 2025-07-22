@@ -82,15 +82,11 @@
             },
             "de": {
               "buildTarget": "ngx-todo:build:development,de"
-            },
-            "development-prod": {
-              "buildTarget": "ngx-todo:build:development",
-              "proxyConfig": "proxy.conf.prod.mjs"
             }
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "proxy.conf.test.mjs"
+            "proxyConfig": "proxy.conf.mjs"
           }
         },
         "extract-i18n": {

@@ -5,7 +5,6 @@
     "ng": "ng",
     "serve": "ng serve",
     "serve:de": "ng serve --configuration=de",
-    "serve:prod": "ng serve --configuration=development-prod",
     "build:test": "ng build",
     "build:prod": "ng build --configuration=production,include-service-worker",
     "lint": "ng lint",

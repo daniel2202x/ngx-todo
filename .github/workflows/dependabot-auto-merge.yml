@@ -8,7 +8,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-22.04
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'daniel2202x/ngx-todo'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
