@@ -1,6 +1,6 @@
 services:
   firebase-emulator:
-    image: eclipse-temurin:21.0.8_9-jre
+    image: eclipse-temurin:25_36-jre
     container_name: $COMPOSE_PROJECT_NAME-firebase-emulator
     hostname: firebase-emulator
     command: bash -c "curl -sL https://firebase.tools | bash && firebase emulators:start"
