@@ -48,4 +48,4 @@ updates:
       interval: 'daily'
     ignore:
       - dependency-name: 'eclipse-temurin'
-        versions: ['~> 22', '~> 23', '~> 24']
+        versions: ['~> 22', '~> 23', '~> 24', '~> 25']
