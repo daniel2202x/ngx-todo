@@ -1,5 +1,13 @@
 name: Lint & Test
-on: push
+
+on:
+  push:
+    branches:
+      - main
+  workflow_run:
+    workflows: ["Dependabot auto-merge"]
+    types:
+      - completed
 
 jobs:
   lint-test:
