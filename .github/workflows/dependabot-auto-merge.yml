@@ -11,7 +11,7 @@ jobs:
     if: github.event.pull_request.user.login == 'dependabot[bot]' && github.repository == 'daniel2202x/ngx-todo'
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/setup-node@v6
         with:
