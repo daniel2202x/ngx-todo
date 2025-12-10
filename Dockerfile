@@ -11,7 +11,7 @@ RUN echo "{\"build\":\"$TAG_NAME\"}" > src/version.json
 RUN npm install
 RUN npm run build:$TARGET_ENV
 
-FROM nginx:1.29.3
+FROM nginx:1.29.4
 ARG TARGET_ENV=prod
 COPY --from=builder /app/nginx.$TARGET_ENV.conf /etc/nginx/nginx.conf
 COPY --from=builder /app/dist/ngx-todo/browser /usr/share/nginx/html
