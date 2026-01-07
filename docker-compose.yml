@@ -36,7 +36,7 @@ services:
         condition: service_healthy
 
   cypress:
-    image: cypress/included:15.8.1
+    image: cypress/included:15.8.2
     container_name: $COMPOSE_PROJECT_NAME-cypress
     profiles:
       - cypress
