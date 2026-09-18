@@ -1,4 +1,4 @@
-FROM node:26.8 AS builder
+FROM node:26.9 AS builder
 ARG TAG_NAME
 ARG TARGET_ENV=prod
 WORKDIR /app
